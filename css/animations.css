@@ -1,0 +1,28 @@
+.butterfly {
+  width: 150px;
+  height: auto;
+  transform-origin: center center;
+  transform: rotate(30deg);
+}
+
+.left-wing {
+  animation: left 1s linear infinite alternate;
+  transform-origin: 50% 0;
+}
+
+.right-wing {
+  animation: right 1s linear infinite alternate;
+  transform-origin: 50% 0;
+}
+
+@keyframes left {
+  to {
+    transform: rotateY(70deg);
+  }
+}
+
+@keyframes right {
+  to {
+    transform: rotateY(-70deg);
+  }
+}

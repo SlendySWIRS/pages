@@ -18,3 +18,20 @@
   border: 3px solid green;
   color: red;
 }
+
+body{
+  background-color: #111;
+  margin: 0;
+}
+
+h5{
+  color: tomato;
+}
+
+
+#snappy{
+  margin-top: 20px;
+  background-color: black;
+  position: relative; 
+  display: block;
+}
