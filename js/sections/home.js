@@ -1,8 +1,6 @@
 // js/sections/home.js
 export function initHome() {
-    // set up SVG or canvas
-    // create Snap.svg shapes
-    // bind click animations
+    console.log("HOME");
 }
 
 export function destroyHome() {
