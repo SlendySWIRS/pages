@@ -8,7 +8,7 @@ export function initHearts() {
 
     console.log("HELLO??");
 
-    Snap.load("../assets/svgs/heart.svg",
+    Snap.load("./assets/svgs/heart.svg",
         onSVGLoaded);
 
     function onSVGLoaded(data) {
