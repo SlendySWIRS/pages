@@ -30,8 +30,12 @@
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
-.narrow {
+.narrowCol {
   max-width: 50vw;
+}
+
+.narrowRow {
+  max-height: 1vh;
 }
 
 .hotpink {

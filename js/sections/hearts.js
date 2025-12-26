@@ -1,18 +1,22 @@
 // js/sections/hearts.js
 
-
-const s = Snap("#snappy");
-let hearts = Array();
+let root;
 
 export function initHearts() {
+    console.log("HEARTS");
+    root = document.createElement('section');
+    root.id = 'hearts';
+    document.querySelector('#app').appendChild(root);
 
-    console.log("HELLO??");
+    // create SVG, animations, listeners here
+    const s = Snap("#snappy");
+    let hearts = Array();
 
     Snap.load("./assets/svgs/heart.svg",
         onSVGLoaded);
 
     function onSVGLoaded(data) {
-        var heart = data.select("#leftwing");
+        var heart = data.select("#heart");
         console.log(data)
         hearts.push(data.node);
         console.log(hearts)
@@ -42,20 +46,10 @@ export function initHearts() {
         // Handlers :
 
         // TOUCH (for mobile devices ):
-        function touchStartHandler() {
-            heart.attr({
-                fill: "white",
-                stroke: "purple"
-            });
-        }
+        function touchStartHandler() { }
 
 
-        function touchMoveHandler() {
-            heart.attr({
-                fill: "purple",
-                stroke: "white"
-            });
-        }
+        function touchMoveHandler() { }
         // DRAG:
 
         // Normally you can just use element.drag(), but since we are using a responsive
@@ -78,39 +72,25 @@ export function initHearts() {
 
         function onEnd() {
             // console.log("endedDrag");
+            var index = hearts.indexOf(this);
+            hearts.splice(index, 1);
+            this.remove();
+            delete this;
         }
 
         // HOVER
         function hoverOver() {
             document.body.style.cursor = "pointer";
-            heart.attr({
-                fill: "cornflowerblue",
-                stroke: "tomato"
-            });
         }
 
         function hoverOut() {
             document.body.style.cursor = "default";
-            heart.attr({
-                fill: "tomato",
-                stroke: "cornflowerblue"
-            });
         }
 
         //CLICK
-        function mouseDown() {
-            heart.attr({
-                fill: "grey",
-                stroke: "dimgrey"
-            });
-        }
+        function mouseDown() { }
 
-        function mouseUp() {
-            heart.attr({
-                fill: "cornflowerblue",
-                stroke: "tomato"
-            });
-        }
+        function mouseUp() { }
     }
 
 
@@ -118,7 +98,9 @@ export function initHearts() {
 }
 
 export function destroyHearts() {
-    hearts.forEach(item => {
-        item.remove();
-    })
+    root.remove();
+    // hearts.forEach(item => {
+    //     item.remove();
+    // })
+    // hearts.splice(0, hearts.length);
 }
