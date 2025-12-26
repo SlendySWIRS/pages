@@ -1,78 +1,89 @@
 // js/sections/welcome.js
+import { loadSection } from '../main.js'
 
 let root;
 
 export function initWelcome() {
-  const app = document.querySelector('#app');
+    const app = document.querySelector('#app');
 
-  // Root container for this section
-  root = document.createElement('section');
+    // Root container for this section
+    root = document.createElement('section');
 
-  /* ---------- First block ---------- */
+    /* ---------- First block ---------- */
 
-  const introDiv = document.createElement('div');
+    const introDiv = document.createElement('div');
+    introDiv.classList.add('center');
 
-  const title = document.createElement('h1');
-  title.classList.add('center', 'hotpink');
-  title.textContent = 'Welcome user!';
+    const title = document.createElement('h1');
+    title.classList.add('center', 'hotpink');
+    title.textContent = 'Welcome user!';
 
-  const p1 = document.createElement('p');
-  p1.classList.add('center');
-  p1.textContent =
-    'To make sure you are really the person I am looking for, I need a few details first!';
+    const p1 = document.createElement('p');
+    p1.classList.add('center');
+    p1.textContent =
+        'To make sure you are really the person I am looking for, I need a few details first!';
 
-  const p2 = document.createElement('p');
-  p2.classList.add('center');
-  p2.textContent = 'Are you ready for a quick questionnaire?';
+    const p2 = document.createElement('p');
+    p2.classList.add('center');
+    p2.textContent = 'Are you ready for a quick questionnaire?';
 
-  introDiv.append(title, p1, p2);
+    const p3 = document.createElement('p');
+    p3.classList.add('center');
+    p3.textContent = 'Take your time and press the button when you are ready';
 
-  /* ---------- Second block ---------- */
+    introDiv.append(title, p1, p2);
 
-  const mainDiv = document.createElement('div');
-  mainDiv.classList.add('center');
+    /* ---------- Second block ---------- */
 
-  const colsDiv = document.createElement('div');
-  colsDiv.classList.add('cols2');
+    const mainDiv = document.createElement('div');
+    mainDiv.classList.add('center');
 
-  const questionBtn = document.createElement('button');
-  questionBtn.id = 'questionStartButton';
-  questionBtn.textContent = 'CLICK ME';
+    const colsDiv = document.createElement('div');
+    colsDiv.classList.add('center', 'cols2');
+    colsDiv.style.width = '20vw';
 
-  const homeBtn = document.createElement('button');
-  homeBtn.id = 'homeStartButton';
-  homeBtn.textContent = 'CLICK ME';
+    const questionBtn = document.createElement('button');
+    questionBtn.style.width = '5vw';
+    questionBtn.style.justifySelf = 'center';
+    questionBtn.id = 'questionStartButton';
+    questionBtn.textContent = 'Yes!';
 
-  colsDiv.append(questionBtn, homeBtn);
+    const waitBtn = document.createElement('button');
+    waitBtn.style.width = '5vw';
+    waitBtn.style.justifySelf = 'center';
+    waitBtn.id = 'homeStartButton';
+    waitBtn.textContent = 'Not yet';
 
-  // SVG container (Snap.svg target)
-  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  svg.setAttribute('id', 'snappy');
-  svg.setAttribute('width', '800px');
-  svg.setAttribute('height', '800px');
-  svg.setAttribute('viewBox', '0 0 800 800');
-  svg.setAttribute('fill', 'none');
+    colsDiv.append(questionBtn, waitBtn);
 
-  mainDiv.append(colsDiv, svg);
+    // SVG container (Snap.svg target)
+    // const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    // svg.style.justifySelf = 'center';
+    // svg.setAttribute('id', 'snappy');
+    // svg.setAttribute('width', '800px');
+    // svg.setAttribute('height', '800px');
+    // svg.setAttribute('viewBox', '0 0 800 800');
+    // svg.setAttribute('fill', 'none');
 
-  /* ---------- Assemble section ---------- */
+    mainDiv.append(colsDiv);
 
-  root.append(introDiv, mainDiv);
-  app.appendChild(root);
+    /* ---------- Assemble section ---------- */
 
-  /* ---------- Optional: event listeners ---------- */
+    root.append(introDiv, mainDiv);
+    app.appendChild(root);
 
-  questionBtn.addEventListener('click', () => {
-    console.log('Questionnaire start!');
-  });
+    /* ---------- Optional: event listeners ---------- */
 
-  homeBtn.addEventListener('click', () => {
-    console.log('Go home!');
-  });
+    questionBtn.addEventListener('click', () => loadSection('questions'));
 
-  // Snap.svg can safely attach to #snappy here
+    waitBtn.addEventListener('click', () => {
+        introDiv.replaceChild(p3, p2);
+        waitBtn.remove();
+    });
+
+    // Snap.svg can safely attach to #snappy here
 }
 
 export function destroyWelcome() {
-  root?.remove();
+    root?.remove();
 }

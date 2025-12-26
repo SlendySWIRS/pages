@@ -20,14 +20,29 @@
   font-display: swap;
 }
 
-
 .center {
   display: grid;
-  place-items: center;
+  justify-self: center;
+}
+
+.w20 {
+  width: 20vw;
+}
+
+.w40 {
+  width: 40vw;
+}
+
+.w60 {
+  width: 60vw;
+}
+
+.w80 {
+  width: 80vw;
 }
 
 .cols2 {
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(10vw, 1fr));
 }
 
 .narrowCol {
@@ -44,7 +59,7 @@
 
 body {
   font-family: "CuteFont";
-  font-size: xxx-large;
+  font-size: xx-large;
   background-color: #c2b2f0;
   margin: 0;
 }

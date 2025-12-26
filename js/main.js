@@ -11,16 +11,23 @@ const sections = {
     hearts: { init: initHearts, destroy: destroyHearts }
 };
 
-function loadSection(name) {
+export function loadSection(name) {
     // unload previous
     if (window.currentSection) {
         sections[window.currentSection].destroy();
     }
     sections[name].init();
     window.currentSection = name;
+    localStorage.setItem('currentSection', window.currentSection);
 }
 
-loadSection('welcome');
+window.addEventListener("load", () => {
+    const saved = localStorage.getItem('currentSection') || 'welcome';
+    if (saved in sections) {
+        loadSection(saved);
+    } else {
+        loadSection('welcome');
+    }
+});
 
-document.getElementById("questionStartButton").addEventListener("click", () => loadSection('questions'));
-document.getElementById("homeStartButton").addEventListener("click", () => loadSection('home'));
+// loadSection('welcome');  // temporary
