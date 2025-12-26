@@ -9,23 +9,25 @@ export function initHearts() {
     document.querySelector('#app').appendChild(root);
 
     // create SVG, animations, listeners here
-    const s = Snap("#snappy");
+
+    const canvas = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    canvas.setAttribute('viewBox', '0 0 100 100');
+    canvas.style.width = '100vw';
+    canvas.style.height = '100vh';
+    canvas.style.position = 'absolute';
+    canvas.style.top = 0;
+    canvas.style.left = 0;
+
+    root.appendChild(canvas);
+
+    const s = Snap(canvas);
     let hearts = Array();
 
-    Snap.load("./assets/svgs/heart.svg",
-        onSVGLoaded);
+    Snap.load("./assets/svgs/heart.svg", onSVGLoaded);
 
     function onSVGLoaded(data) {
         var heart = data.select("#heart");
-        console.log(data)
         hearts.push(data.node);
-        console.log(hearts)
-
-        heart.attr({
-            fill: "tomato",
-            stroke: "cornflowerblue",
-            strokeWidth: 0
-        });
 
         // Hover :
         heart.hover(hoverOver, hoverOut);
@@ -63,7 +65,7 @@ export function initHearts() {
             snapInvMatrix.e = snapInvMatrix.f = 0;
             tdx = snapInvMatrix.x(dx, dy);
             tdy = snapInvMatrix.y(dx, dy);
-            this.transform("t" + [tdx, tdy] + this.data('ot'));
+            this.transform("t" + [tdx/10, tdy/10] + this.data('ot'));
         }
 
         function onStart(x, y, ev) {

@@ -97,24 +97,24 @@ export function initQuestions() {
     question3.textContent = 'What would your reaction be to someone saying "Oh my days!"?';
 
     const answer3_1 = document.createElement('p');
-    answer3_1.textContent = '"What\'s up?"';
+    answer3_1.textContent = '"what"';
     clickable(answer3_1);
     answer3_1.addEventListener('click', () => nextQuestion());
 
     const answer3_2 = document.createElement('p');
     answer3_2.textContent = '"Hey, I also say that!"';
     clickable(answer3_2);
-    answer3_2.addEventListener('click', () => nextQuestion());
+    tryAgain(answer3_2);
 
     const answer3_3 = document.createElement('p');
-    answer3_3.textContent = '"Weeeeeee!" (with a big smile)';
+    answer3_3.textContent = '"Sayounara, spaghetti carbonara!"';
     clickable(answer3_3);
-    answer3_3.addEventListener('click', () => nextQuestion());
+    tryAgain(answer3_3);
 
     const answer3_4 = document.createElement('p');
     answer3_4.textContent = 'None of the above';
     clickable(answer3_4);
-    answer3_4.addEventListener('click', () => nextQuestion());
+    tryAgain(answer3_4);
 
     question3Div.append(title3, question3, answer3_1, answer3_2, answer3_3, answer3_4);
 
@@ -126,19 +126,21 @@ export function initQuestions() {
     question4.textContent = 'When is your birthday?';
 
     const answer4_1 = document.createElement('p');
-    answer4_1.textContent = 'Today, silly! (but only if we are the 8th of February now!)';
+    answer4_1.textContent = 'On the 25th of December (By the way, my name is Jesus)';
     clickable(answer4_1);
-    answer4_1.addEventListener('click', () => nextQuestion());
+    tryAgain(answer4_1);
 
     const answer4_2 = document.createElement('p');
-    answer4_2.textContent = 'On the 25th of December (By the way, my name is Jesus)';
+    answer4_2.textContent = 'Exactly 5 days after the start of summer';
     clickable(answer4_2);
     tryAgain(answer4_2);
 
     const answer4_3 = document.createElement('p');
-    answer4_3.textContent = 'Exactly 5 days after the start of summer';
+    answer4_3.textContent = 'Today, silly! (but only if we are the 8th of February now)';
     clickable(answer4_3);
-    tryAgain(answer4_3);
+    answer4_3.addEventListener('click', () => nextQuestion());
+
+
 
     question4Div.append(title4, question4, answer4_1, answer4_2, answer4_3);
 
@@ -155,6 +157,7 @@ export function initQuestions() {
     answer5_1.addEventListener('click', () => nextQuestion());
 
     let clicked = false;
+    let ready = false;
     const answer5_2 = document.createElement('p');
     answer5_2.textContent = 'No';
     clickable(answer5_2);
@@ -169,8 +172,11 @@ export function initQuestions() {
         if (!clicked) {
             clicked = true;
             answer5_2.textContent = 'Fine, let\'s play it your way!';
-            setTimeout(() => { answer5_2.textContent = 'Of course! (✿◠‿◠)'; }, 1500);
-        } else {
+            setTimeout(() => {
+                answer5_2.textContent = 'Of course! (✿◠‿◠)';
+                ready = true;
+            }, 1500);
+        } else if (ready) {
             nextQuestion();
         }
     });
@@ -209,7 +215,7 @@ export function initQuestions() {
                     questionDiv.replaceChild(question5Div, question4Div);
                     break;
                 default:
-                    loadSection('welcome');
+                    loadSection('hearts');
                     break;
             }
         }
