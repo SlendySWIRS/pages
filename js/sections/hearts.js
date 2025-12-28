@@ -1,6 +1,7 @@
 // js/sections/hearts.js
 
 let root;
+let heartArray = Array();
 
 export function initHearts() {
     console.log("HEARTS");
@@ -21,29 +22,45 @@ export function initHearts() {
     root.appendChild(canvas);
 
     const s = Snap(canvas);
-    let hearts = Array();
 
     Snap.load("./assets/svgs/heart.svg", onSVGLoaded);
 
     function onSVGLoaded(data) {
         var heart = data.select("#heart");
-        hearts.push(data.node);
+        heart.transform('t1,1 r10,0,0 s0.2')
+        var heart2 = heart.clone().transform('t12,5 r-10,0,0 s0.2');
+        var heart3 = heart.clone().transform('t9,12 r70,0,0 s0.2');
+        heartArray.push(heart);
+        heartArray.push(heart2);
+        heartArray.push(heart3);
 
         // Hover :
         heart.hover(hoverOver, hoverOut);
+        heart2.hover(hoverOver, hoverOut);
+        heart3.hover(hoverOver, hoverOut);
         // Click :
         heart.mouseup(mouseUp);
+        heart2.mouseup(mouseUp);
+        heart3.mouseup(mouseUp);
         heart.mousedown(mouseDown);
+        heart2.mousedown(mouseDown);
+        heart3.mousedown(mouseDown);
         //onmove, onstart, onend
         heart.drag(onMove, onStart, onEnd);
+        heart2.drag(onMove, onStart, onEnd);
+        heart3.drag(onMove, onStart, onEnd);
 
         // Touch:
-        // mouseup mousedown seem to also workon mobile, but to be sure,
+        // mouseup mousedown seem to also work on mobile, but to be sure,
         // you can use touch events:
         heart.touchstart(touchStartHandler);
+        heart2.touchstart(touchStartHandler);
+        heart3.touchstart(touchStartHandler);
         heart.touchmove(touchMoveHandler);
+        heart2.touchmove(touchMoveHandler);
+        heart3.touchmove(touchMoveHandler);
 
-        s.append(data);
+        s.append(data.node);
 
         // Handlers :
 
@@ -65,7 +82,7 @@ export function initHearts() {
             snapInvMatrix.e = snapInvMatrix.f = 0;
             tdx = snapInvMatrix.x(dx, dy);
             tdy = snapInvMatrix.y(dx, dy);
-            this.transform("t" + [tdx / 10, tdy / 10] + this.data('ot'));
+            this.transform("t" + [tdx / 5, tdy / 5] + this.data('ot'));
         }
 
         function onStart(x, y, ev) {
@@ -74,19 +91,30 @@ export function initHearts() {
 
         function onEnd() {
             // console.log("endedDrag");
-            var index = hearts.indexOf(this);
-            hearts.splice(index, 1);
+            console.log(heartArray);
+            var index = heartArray.indexOf(this);
+            console.log(index);
+            heartArray.splice(index, 1);
             this.remove();
             delete this;
+            console.log(heartArray);
         }
 
         // HOVER
         function hoverOver() {
             document.body.style.cursor = "pointer";
+            this.select('.leftwingid').addClass("left-wing-fast");
+            this.select('.leftwingid').removeClass("left-wing");
+            this.select('.rightwingid').addClass("right-wing-fast");
+            this.select('.rightwingid').removeClass("right-wing");
         }
 
         function hoverOut() {
             document.body.style.cursor = "default";
+            this.select('.leftwingid').removeClass("left-wing-fast");
+            this.select('.leftwingid').addClass("left-wing");
+            this.select('.rightwingid').removeClass("right-wing-fast");
+            this.select('.rightwingid').addClass("right-wing");
         }
 
         //CLICK
