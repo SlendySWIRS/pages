@@ -65,7 +65,7 @@ export function initHearts() {
             snapInvMatrix.e = snapInvMatrix.f = 0;
             tdx = snapInvMatrix.x(dx, dy);
             tdy = snapInvMatrix.y(dx, dy);
-            this.transform("t" + [tdx/10, tdy/10] + this.data('ot'));
+            this.transform("t" + [tdx / 10, tdy / 10] + this.data('ot'));
         }
 
         function onStart(x, y, ev) {

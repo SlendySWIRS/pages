@@ -94,25 +94,25 @@ export function initQuestions() {
     title3.textContent = 'Question 3 (3 to go now!):';
 
     const question3 = document.createElement('p');
-    question3.textContent = 'What would your reaction be to someone saying "Oh my days!"?';
+    question3.textContent = 'Have you ever participated in any sports, and if so: which?';
 
     const answer3_1 = document.createElement('p');
-    answer3_1.textContent = '"what"';
+    answer3_1.textContent = 'No!';
     clickable(answer3_1);
     answer3_1.addEventListener('click', () => nextQuestion());
 
     const answer3_2 = document.createElement('p');
-    answer3_2.textContent = '"Hey, I also say that!"';
+    answer3_2.textContent = 'Yes, I used to play volleyball';
     clickable(answer3_2);
     tryAgain(answer3_2);
 
     const answer3_3 = document.createElement('p');
-    answer3_3.textContent = '"Sayounara, spaghetti carbonara!"';
+    answer3_3.textContent = 'Yes, I am an Olympic swimming champion!';
     clickable(answer3_3);
     tryAgain(answer3_3);
 
     const answer3_4 = document.createElement('p');
-    answer3_4.textContent = 'None of the above';
+    answer3_4.textContent = 'Sports? I only play chess (on a casual level)';
     clickable(answer3_4);
     tryAgain(answer3_4);
 
