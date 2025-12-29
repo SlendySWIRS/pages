@@ -23,7 +23,32 @@ export function initHearts() {
 
     const s = Snap(canvas);
 
+    Snap.load("./assets/svgs/cutebutton.svg", onButtonLoaded);
     Snap.load("./assets/svgs/heart.svg", onSVGLoaded);
+
+    // Snap.load("./assets/svgs/cute-button.svg", onButtonLoaded);
+
+    function onButtonLoaded(data) {
+        var button = data.select("#button");
+
+        button.hover(hoverOver, hoverOut);
+        button.mouseup(mouseUp);
+        button.mousedown(mouseDown);
+
+        s.append(data.node);
+
+        function hoverOver() {
+            document.body.style.cursor = "pointer";
+        }
+
+        function hoverOut() {
+            document.body.style.cursor = "default";
+        }
+
+        function mouseDown() { }
+
+        function mouseUp() { }
+    }
 
     function onSVGLoaded(data) {
         var heart = data.select("#heart");
@@ -98,6 +123,7 @@ export function initHearts() {
             this.remove();
             delete this;
             console.log(heartArray);
+            document.body.style.cursor = "default";
         }
 
         // HOVER
