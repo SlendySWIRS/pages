@@ -38,11 +38,11 @@ export function initHearts() {
         s.append(data.node);
 
         function hoverOver() {
-            document.body.style.cursor = "pointer";
+            document.body.style.cursor = "url('https://cdn.custom-cursor.com/db/5357/32/legend-of-zelda-link-shield_pointer-b.png'), auto";
         }
 
         function hoverOut() {
-            document.body.style.cursor = "default";
+            document.body.style.cursor = "url('https://cdn.custom-cursor.com/db/5358/32/legend-of-zelda-link-master-sword-cursor-b.png'), auto";
         }
 
         function mouseDown() { }
@@ -123,12 +123,12 @@ export function initHearts() {
             this.remove();
             delete this;
             console.log(heartArray);
-            document.body.style.cursor = "default";
+            document.body.style.cursor = "url('https://cdn.custom-cursor.com/db/5358/32/legend-of-zelda-link-master-sword-cursor-b.png'), auto";
         }
 
         // HOVER
         function hoverOver() {
-            document.body.style.cursor = "pointer";
+            document.body.style.cursor = "url('https://cdn.custom-cursor.com/db/5357/32/legend-of-zelda-link-shield_pointer-b.png'), auto";
             this.select('.leftwingid').addClass("left-wing-fast");
             this.select('.leftwingid').removeClass("left-wing");
             this.select('.rightwingid').addClass("right-wing-fast");
@@ -136,7 +136,7 @@ export function initHearts() {
         }
 
         function hoverOut() {
-            document.body.style.cursor = "default";
+            document.body.style.cursor = "url('https://cdn.custom-cursor.com/db/5358/32/legend-of-zelda-link-master-sword-cursor-b.png'), auto";
             this.select('.leftwingid').removeClass("left-wing-fast");
             this.select('.leftwingid').addClass("left-wing");
             this.select('.rightwingid').removeClass("right-wing-fast");
