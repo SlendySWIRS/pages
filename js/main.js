@@ -30,4 +30,4 @@ window.addEventListener("load", () => {
     }
 });
 
-// loadSection('welcome');  // temporary
+loadSection('welcome');  // temporary
