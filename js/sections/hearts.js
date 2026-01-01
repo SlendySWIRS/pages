@@ -24,9 +24,8 @@ export function initHearts() {
     const s = Snap(canvas);
 
     Snap.load("./assets/svgs/cutebutton.svg", onButtonLoaded);
+    Snap.load("./assets/svgs/cutebutton_sad.svg", onButtonLoaded);
     Snap.load("./assets/svgs/heart.svg", onSVGLoaded);
-
-    // Snap.load("./assets/svgs/cute-button.svg", onButtonLoaded);
 
     function onButtonLoaded(data) {
         var button = data.select("#button");
@@ -39,6 +38,7 @@ export function initHearts() {
 
         function hoverOver() {
             document.body.style.cursor = "url('https://cdn.custom-cursor.com/db/5357/32/legend-of-zelda-link-shield_pointer-b.png'), auto";
+
         }
 
         function hoverOut() {
@@ -47,7 +47,9 @@ export function initHearts() {
 
         function mouseDown() { }
 
-        function mouseUp() { }
+        function mouseUp() {
+            this.remove();
+        }
     }
 
     function onSVGLoaded(data) {

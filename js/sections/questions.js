@@ -99,12 +99,12 @@ export function initQuestions() {
     const answer3_1 = document.createElement('p');
     answer3_1.textContent = 'No!';
     clickable(answer3_1);
-    answer3_1.addEventListener('click', () => nextQuestion());
+    tryAgain(answer3_1);
 
     const answer3_2 = document.createElement('p');
     answer3_2.textContent = 'Yes, I used to play volleyball';
     clickable(answer3_2);
-    tryAgain(answer3_2);
+    answer3_2.addEventListener('click', () => nextQuestion());
 
     const answer3_3 = document.createElement('p');
     answer3_3.textContent = 'Yes, I am an Olympic swimming champion!';
@@ -175,7 +175,7 @@ export function initQuestions() {
             setTimeout(() => {
                 answer5_2.textContent = 'Of course! (✿◠‿◠)';
                 ready = true;
-            }, 1500);
+            }, 1000);
         } else if (ready) {
             nextQuestion();
         }
