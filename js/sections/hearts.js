@@ -1,7 +1,6 @@
 // js/sections/hearts.js
 
 let root;
-let heartArray = Array();
 
 export function initHearts() {
     console.log("HEARTS");
@@ -11,8 +10,21 @@ export function initHearts() {
 
     // create SVG, animations, listeners here
 
+    const canvasWidth = window.innerWidth;
+    const canvasHeight = window.innerHeight;
+
+    // viewBox size
+    const vbWidth = 100;
+    const vbHeight = 100;
+
+    console.log("VBW: " + vbWidth);
+    console.log("VBH: " + vbHeight);
+
+    const scaleX = vbWidth / canvasWidth;
+    const scaleY = vbHeight / canvasHeight;
+
     const canvas = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    canvas.setAttribute('viewBox', '0 0 100 100');
+    canvas.setAttribute('viewBox', `0 0 ${vbWidth} ${vbHeight}`);
     canvas.style.width = '100vw';
     canvas.style.height = '100vh';
     canvas.style.position = 'absolute';
@@ -57,9 +69,21 @@ export function initHearts() {
         heart.transform('t1,1 r10,0,0 s0.2')
         var heart2 = heart.clone().transform('t12,5 r-10,0,0 s0.2');
         var heart3 = heart.clone().transform('t9,12 r70,0,0 s0.2');
-        heartArray.push(heart);
-        heartArray.push(heart2);
-        heartArray.push(heart3);
+
+        const svgNode = data.node;
+        s.append(data.node);
+        const rect = svgNode.getBoundingClientRect();
+
+        // get viewBox attribute
+        const vb = svgNode.getAttribute("viewBox"); // returns a string like "0 0 24 24"
+        console.log("heart viewBox:", vb);
+
+        // parse numbers
+        const [vbX, vbY, heartVbWidth, heartVbHeight] = vb.split(" ").map(Number);
+        console.log(vbX, vbY, heartVbWidth, heartVbHeight);
+
+        var scaleX = heartVbWidth / rect.width;
+        var scaleY = heartVbHeight / rect.height;
 
         // Hover :
         heart.hover(hoverOver, hoverOut);
@@ -87,8 +111,6 @@ export function initHearts() {
         heart2.touchmove(touchMoveHandler);
         heart3.touchmove(touchMoveHandler);
 
-        s.append(data.node);
-
         // Handlers :
 
         // TOUCH (for mobile devices ):
@@ -103,13 +125,10 @@ export function initHearts() {
         // you can alos use a plugin:
         // http://stackoverflow.com/questions/42570545/snap-svg-drag-coordinates-inside-a-responsive-viewbox
 
-        function onMove(dx, dy, ev, x, y) {
-            var tdx, tdy;
-            var snapInvMatrix = this.transform().diffMatrix.invert();
-            snapInvMatrix.e = snapInvMatrix.f = 0;
-            tdx = snapInvMatrix.x(dx, dy);
-            tdy = snapInvMatrix.y(dx, dy);
-            this.transform("t" + [tdx / 5, tdy / 5] + this.data('ot'));
+        function onMove(dx, dy, x, y, ev) {
+            const scale = Math.min(scaleX, scaleY);
+            console.log(dx);
+            this.transform(`t${dx * scaleX},${dy * scaleY}${this.data('ot')}`);
         }
 
         function onStart(x, y, ev) {
@@ -118,14 +137,10 @@ export function initHearts() {
 
         function onEnd() {
             // console.log("endedDrag");
-            console.log(heartArray);
-            var index = heartArray.indexOf(this);
-            console.log(index);
-            heartArray.splice(index, 1);
-            this.remove();
-            delete this;
-            console.log(heartArray);
-            document.body.style.cursor = "url('https://cdn.custom-cursor.com/db/5358/32/legend-of-zelda-link-master-sword-cursor-b.png'), auto";
+            // this.remove();
+            // delete this;
+            // document.body.style.cursor = "url('https://cdn.custom-cursor.com/db/5358/32/legend-of-zelda-link-master-sword-cursor-b.png'), auto";
+            this.removeData('start');
         }
 
         // HOVER
