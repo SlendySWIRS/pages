@@ -41,6 +41,7 @@ export function initHearts() {
 
     function onButtonLoaded(data) {
         var button = data.select("#button");
+        button.transform('t40,-30 r10,0,0 s0.1');
 
         button.hover(hoverOver, hoverOut);
         button.mouseup(mouseUp);
