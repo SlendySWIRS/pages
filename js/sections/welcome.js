@@ -16,22 +16,35 @@ export function initWelcome() {
 
     const title = document.createElement('h1');
     title.classList.add('center', 'hotpink');
-    title.textContent = 'Welcome user!';
+    title.textContent = 'Welcome Hana!';
 
     const p1 = document.createElement('p');
-    p1.classList.add('center');
-    p1.textContent =
-        'To make sure you are really the person I am looking for, I need a few details first!';
+    p1.classList.add('center', 'noMarginTop');
+    p1.textContent = 'First things first: | Happy Birthday! |';
 
     const p2 = document.createElement('p');
-    p2.classList.add('center');
-    p2.textContent = 'Are you ready for a quick questionnaire?';
+    p2.classList.add('center', 'noMargin');
+    p2.textContent = 'Your goal today is to find 10 heartflies (butterflies, shaped like hearts)';
 
     const p3 = document.createElement('p');
-    p3.classList.add('center');
-    p3.textContent = 'Take your time and press the button when you are ready';
+    p3.style.width = '60%';
+    p3.classList.add('center', 'noMargin');
+    p3.style.textAlign = "center";
+    p3.textContent = 'How to do this? Through a few small puzzle-like games, focussed on you and your persona (HanaMii)!';
 
-    introDiv.append(title, p1, p2);
+    const p4 = document.createElement('p');
+    p4.classList.add('center', 'noMargin');
+    p4.textContent = 'Apart from the games, there are also a few secret hearts, hidden in different parts of this site';
+
+    const p5 = document.createElement('p');
+    p5.classList.add('center', 'noMarginTop');
+    p5.textContent = 'After collecting enough heartflies, you unlock the "Book of Hearts", which contains a heartfelt message from me to you';
+
+    const p6 = document.createElement('p');
+    p6.classList.add('center', 'noMarginTop');
+    p6.textContent = 'When you are ready to make a choice, click one of the buttons below. And don\'t forget to have fun, Hanabun!';
+
+    introDiv.append(title, p1, p2, p3, p4, p5, p6);
 
     /* ---------- Second block ---------- */
 
