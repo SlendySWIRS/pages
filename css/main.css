@@ -41,7 +41,7 @@
   width: 80vw;
 }
 
-.cols2 {
+.cols {
   grid-template-columns: repeat(auto-fit, minmax(10vw, 1fr));
 }
 

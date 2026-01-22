@@ -1,6 +1,6 @@
 // js/sections/questions.js
 import { loadSection } from '../main.js'
-import { hoverOverClickable, hoverOutClickable } from '../utils.js'
+import { clickable } from '../utils.js'
 
 let root;
 const failMsgs = [];
@@ -32,7 +32,7 @@ export function initQuestions() {
     title1.textContent = 'First question (out of 5):';
 
     const question1 = document.createElement('p');
-    question1.textContent = 'What is your favorite pizza flavour? (to eat, so pizzapotomus is not an answer)';
+    question1.textContent = 'What is your favorite pizza flavour?';
 
     const answer1_1 = document.createElement('p');
     answer1_1.textContent = 'Pizza Funghi';
@@ -131,7 +131,7 @@ export function initQuestions() {
     tryAgain(answer4_1);
 
     const answer4_2 = document.createElement('p');
-    answer4_2.textContent = 'Exactly 5 days after the start of summer';
+    answer4_2.textContent = 'Exactly 5 days after Easter';
     clickable(answer4_2);
     tryAgain(answer4_2);
 
@@ -219,11 +219,6 @@ export function initQuestions() {
                     break;
             }
         }
-    }
-
-    function clickable(element) {
-        element.addEventListener('mouseenter', () => hoverOverClickable());
-        element.addEventListener('mouseleave', () => hoverOutClickable());
     }
 }
 
