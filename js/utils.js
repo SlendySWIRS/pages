@@ -1,8 +1,16 @@
 // js/utils.js
+import { loadSection } from './main.js'
 
 export function clickable(element) {
     element.addEventListener('mouseenter', () => hoverOverClickable());
     element.addEventListener('mouseleave', () => hoverOutClickable());
+}
+
+export function clickableA(element, section) {
+    element.addEventListener('mouseenter', () => hoverOverClickable());
+    element.addEventListener('mouseleave', () => hoverOutClickable());
+    element.addEventListener('click', () => loadSection(section));
+
 }
 
 export function hoverOverClickable() {

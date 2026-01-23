@@ -1,6 +1,6 @@
 // js/sections/welcome.js
 import { loadSection } from '../main.js'
-import { clickable } from '../utils.js'
+import { clickableA } from '../utils.js'
 
 let root;
 
@@ -54,66 +54,59 @@ export function initWelcome() {
 
     const questionBtnDiv = document.createElement('div');
     questionBtnDiv.style.position = 'relative';
+    questionBtnDiv.style.width = 'fit-content';
     const questionBtn = document.createElement('img');
     questionBtn.setAttribute('src', './assets/images/home/questions.png');
     questionBtn.style.width = '10vw';
+    questionBtn.style.height = 'fit-content';
     questionBtn.style.justifySelf = 'center';
-    clickable(questionBtn);
+    clickableA(questionBtn, "questions");
     const questionBtnText = document.createElement('div');
     questionBtnText.textContent = 'Hana\'s trivia';
-    questionBtnText.style.fontSize = '1.5vw';
-    questionBtnText.style.position = 'absolute';
-    questionBtnText.style.top = '15px';
-    questionBtnText.style.left = '65px';
-    clickable(questionBtnText);
+    questionBtnText.classList.add("btnText");
+    clickableA(questionBtnText, "questions");
     questionBtnDiv.append(questionBtn, questionBtnText);
 
     const slidingBtnDiv = document.createElement('div');
     slidingBtnDiv.style.position = 'relative';
+    slidingBtnDiv.style.width = 'fit-content';
     const slidingBtn = document.createElement('img');
     slidingBtn.setAttribute('src', './assets/images/home/sliding-puzzle.png');
     slidingBtn.style.width = '10vw';
     slidingBtn.style.justifySelf = 'center';
-    clickable(slidingBtn);
+    clickableA(slidingBtn, "sliding");
     const slidingBtnText = document.createElement('div');
     slidingBtnText.textContent = 'Sliding puzzle';
-    slidingBtnText.style.fontSize = '1.5vw';
-    slidingBtnText.style.position = 'absolute';
-    slidingBtnText.style.top = '15px';
-    slidingBtnText.style.left = '65px';
-    clickable(slidingBtnText);
+    slidingBtnText.classList.add("btnText");
+    clickableA(slidingBtnText, "sliding");
     slidingBtnDiv.append(slidingBtn, slidingBtnText);
 
     const memoryBtnDiv = document.createElement('div');
     memoryBtnDiv.style.position = 'relative';
+    memoryBtnDiv.style.width = 'fit-content';
     const memoryBtn = document.createElement('img');
     memoryBtn.setAttribute('src', './assets/images/home/memory-puzzle.png');
     memoryBtn.style.width = '10vw';
     memoryBtn.style.justifySelf = 'center';
-    clickable(memoryBtn);
+    clickableA(memoryBtn, "memory");
     const memoryBtnText = document.createElement('div');
     memoryBtnText.textContent = 'Memory game';
-    memoryBtnText.style.fontSize = '1.4vw';
-    memoryBtnText.style.position = 'absolute';
-    memoryBtnText.style.top = '15px';
-    memoryBtnText.style.left = '60px';
-    clickable(memoryBtnText);
+    memoryBtnText.classList.add("btnText");
+    clickableA(memoryBtnText, "memory");
     memoryBtnDiv.append(memoryBtn, memoryBtnText);
 
     const loadingBtnDiv = document.createElement('div');
     loadingBtnDiv.style.position = 'relative';
+    loadingBtnDiv.style.width = 'fit-content';
     const loadingBtn = document.createElement('img');
-    loadingBtn.setAttribute('src', './assets/images/home/questions.png');
+    loadingBtn.setAttribute('src', './assets/images/home/loading-bar.png');
     loadingBtn.style.width = '10vw';
     loadingBtn.style.justifySelf = 'center';
-    clickable(loadingBtn);
+    clickableA(loadingBtn, "loading");
     const loadingBtnText = document.createElement('div');
     loadingBtnText.textContent = 'Free hearts?';
-    loadingBtnText.style.fontSize = '1.5vw';
-    loadingBtnText.style.position = 'absolute';
-    loadingBtnText.style.top = '15px';
-    loadingBtnText.style.left = '65px';
-    clickable(loadingBtnText);
+    loadingBtnText.classList.add("btnText");
+    clickableA(loadingBtnText, "loading");
     loadingBtnDiv.append(loadingBtn, loadingBtnText);
 
     colsDiv.append(questionBtnDiv, slidingBtnDiv, memoryBtnDiv, loadingBtnDiv);
@@ -135,9 +128,6 @@ export function initWelcome() {
     app.appendChild(root);
 
     /* ---------- Optional: event listeners ---------- */
-
-    questionBtn.addEventListener('click', () => loadSection('questions'));
-    questionBtnText.addEventListener('click', () => loadSection('questions'));
 
     // Snap.svg can safely attach to #snappy here
 }

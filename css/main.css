@@ -45,6 +45,7 @@
   grid-template-columns: repeat(auto-fit, minmax(10vw, 1fr));
 }
 
+
 .narrowCol {
   max-width: 50vw;
 }
@@ -65,7 +66,8 @@
   color: hotpink;
 }
 
-body, #root {
+body,
+#root {
   cursor: url('https://cdn.custom-cursor.com/db/5358/32/legend-of-zelda-link-master-sword-cursor-b.png'), auto;
   font-family: "CuteFont";
   font-size: xx-large;
@@ -80,4 +82,24 @@ body, #root {
   background-color: #c2b2f0;
   position: relative;
   display: block;
+}
+
+.btnText {
+  font-size: 80%;
+  position: absolute;
+  width: 70%;
+  top: 45%;
+  transform: translateY(-50%);
+  left: 27.5%;
+  text-align: center;
+}
+
+.btnText2 {
+  font-size: 80%;
+  position: absolute;
+  width: 54%;
+  top: 57%;
+  transform: translateY(-50%);
+  left: 42%;
+  text-align: center;
 }
