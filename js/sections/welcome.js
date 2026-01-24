@@ -58,7 +58,6 @@ export function initWelcome() {
     const questionBtn = document.createElement('img');
     questionBtn.setAttribute('src', './assets/images/home/questions.png');
     questionBtn.style.width = '10vw';
-    questionBtn.style.height = 'fit-content';
     questionBtn.style.justifySelf = 'center';
     clickableA(questionBtn, "questions");
     const questionBtnText = document.createElement('div');

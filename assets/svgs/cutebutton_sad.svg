@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:v="https://svgstorm.com"
-    viewBox="0 0 612 408">
+    viewBox="0 82 612 245">
     <g id="button"
 Class="heart">
         <!-- <g fill="None" fill-opacity="0.0" stroke="#000000" stroke-opacity="0.00"
@@ -947,7 +947,7 @@ Class="heart">
                 C 606.71 161.67 570.88 144.61 541.00 151.00
                 C 435.48 151.67 328.76 149.67 224.00 152.00
                 C 226.57 152.96 228.42 155.01 231.00 156.00 Z" />
-            <text id="textcontent" x="150" y="260" font-size="80" fill="red">❤️ Hello ❤️</text>
+            <!-- <text id="textcontent" x="150" y="260" font-size="80" fill="red">❤️ Hello ❤️</text> -->
         </g>
         <g fill="#8078B3" fill-opacity="1.00" stroke="None">
             <path

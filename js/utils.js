@@ -9,7 +9,10 @@ export function clickable(element) {
 export function clickableA(element, section) {
     element.addEventListener('mouseenter', () => hoverOverClickable());
     element.addEventListener('mouseleave', () => hoverOutClickable());
-    element.addEventListener('click', () => loadSection(section));
+    element.addEventListener('click', () => {
+        loadSection(section);
+        hoverOutClickable();
+    });
 
 }
 
