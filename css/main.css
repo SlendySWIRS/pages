@@ -103,3 +103,11 @@ body,
   left: 42%;
   text-align: center;
 }
+
+.slidingRoot {
+  height: 97vh;
+  padding: 0;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+}

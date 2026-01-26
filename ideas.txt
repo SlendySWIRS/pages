@@ -2,7 +2,7 @@ Welcome + info
 -> questions (6 questions for up to 3 hearts)
 -> sliding puzzles (3 puzzles, for up to 3 hearts)
 -> loading bar ("free hearts?") (3 bars, for up to 3 hearts)
--> memory puzzle (quotes) (6 pairs, for up to 3 hearts)
+-> memory puzzle (emote icons) (1 puzzle for up to 3 hearts)
 
 Questions:
 - What's your favorite pizza flavour? (margherita/funghi/salame/quattri formaggi)
@@ -16,12 +16,7 @@ Sliding puzzles:
 - see AI images
 
 Memory puzzle:
-- BALLS
-- Oh my days
-- That's huge
-- Backshot time
-- Leck meine Eier
-- Who said this game is hard
+- see images
 
 Loading bar:
 - click to fill it up

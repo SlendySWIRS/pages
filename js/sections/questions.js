@@ -342,7 +342,7 @@ export function initQuestions() {
 
 
     const title5 = document.createElement('h3');
-    title5.textContent = 'Question 5: Which of the following quotes (by you) fits the best after "Fire, fire, ...":';
+    title5.textContent = 'Question 5: What was your favorite part in "It takes two"?';
 
     const answer5_1Div = document.createElement('div');
     answer5_1Div.style.position = 'relative';
@@ -357,7 +357,7 @@ export function initQuestions() {
     answer5_1Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
     const answer5_1 = document.createElement('div');
     answer5_1.classList.add("btnText2");
-    answer5_1.textContent = 'BALLS';
+    answer5_1.textContent = 'The part with the squirrels';
     hoverAction(answer5_1ClickDiv, answer5_1Btn);
     tryAgain(answer5_1ClickDiv, answer5_1Btn, answer5_1);
     answer5_1Div.append(answer5_1Btn, answer5_1, answer5_1ClickDiv);
@@ -375,7 +375,7 @@ export function initQuestions() {
     answer5_2Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
     const answer5_2 = document.createElement('div');
     answer5_2.classList.add("btnText2");
-    answer5_2.textContent = 'Oh my days!';
+    answer5_2.textContent = 'Throwing cutie off the edge of the wardrobe';
     hoverAction(answer5_2ClickDiv, answer5_2Btn);
     tryAgain(answer5_2ClickDiv, answer5_2Btn, answer5_2);
     answer5_2Div.append(answer5_2Btn, answer5_2, answer5_2ClickDiv);
@@ -393,7 +393,7 @@ export function initQuestions() {
     answer5_3Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
     const answer5_3 = document.createElement('div');
     answer5_3.classList.add("btnText2");
-    answer5_3.textContent = 'Backshot time';
+    answer5_3.textContent = 'The part where you kept hammering me';
     hoverAction(answer5_3ClickDiv, answer5_3Btn);
     tryAgain(answer5_3ClickDiv, answer5_3Btn, answer5_3);
     answer5_3Div.append(answer5_3Btn, answer5_3, answer5_3ClickDiv);
@@ -411,7 +411,7 @@ export function initQuestions() {
     answer5_4Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
     const answer5_4 = document.createElement('div');
     answer5_4.classList.add("btnText2");
-    answer5_4.textContent = 'Leck meine Eier';
+    answer5_4.textContent = 'The last part, about the music';
     hoverAction(answer5_4ClickDiv, answer5_4Btn);
     answer5_4ClickDiv.addEventListener('click', () => nextQuestion());
     answer5_4Div.append(answer5_4Btn, answer5_4, answer5_4ClickDiv);
@@ -429,7 +429,7 @@ export function initQuestions() {
     answer5_5Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
     const answer5_5 = document.createElement('div');
     answer5_5.classList.add("btnText2");
-    answer5_5.textContent = 'Who said this game is hard?';
+    answer5_5.textContent = 'The clock part';
     hoverAction(answer5_5ClickDiv, answer5_5Btn);
     tryAgain(answer5_5ClickDiv, answer5_5Btn, answer5_5);
     answer5_5Div.append(answer5_5Btn, answer5_5, answer5_5ClickDiv);
