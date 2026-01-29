@@ -1,6 +1,7 @@
 // js/sections/sliding.js
 import { loadSection } from '../main.js'
 import { clickable } from '../utils.js'
+import { clickableA } from '../utils.js'
 
 let root;
 
@@ -9,7 +10,7 @@ export function initSliding() {
 
     // Root container for this section
     root = document.createElement('section');
-    root.classList.add("slidingRoot");
+    root.classList.add('center')
 
     var p = {
         "diff": "100",
@@ -34,10 +35,17 @@ export function initSliding() {
     }, freeslot = [], size = [], m = [], o, f = document.createElement('div');
 
     /* ---------- Assemble section ---------- */
-
-    root.append(f);
+    const fDiv = document.createElement('div');
+    fDiv.classList.add("slidingRoot");
+    fDiv.append(f);
+    root.append(fDiv);
     app.appendChild(root);
     create_slots();
+    const menuBtn = document.createElement('img');
+    menuBtn.setAttribute('src', './assets/images/home/home.png');
+    menuBtn.classList.add('menuBtn');
+    clickableA(menuBtn, "welcome");
+    root.append(menuBtn);
 
     function create_slots() {
         size = [p.size[0] / (p.grid[0] + 1), p.size[1] / (p.grid[1] + 1)];

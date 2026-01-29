@@ -1,6 +1,7 @@
 // js/sections/questions.js
 import { loadSection } from '../main.js'
 import { clickable } from '../utils.js'
+import { clickableA } from '../utils.js'
 
 let root;
 const failMsgs = [];
@@ -13,21 +14,29 @@ export function initQuestions() {
     root.classList.add('center')
 
     /* ---------- First block ---------- */
+
     const questionDiv = document.createElement('div');
     questionDiv.classList.add('center', 'w80');
+    questionDiv.style.height = '60vh';
 
     const question1Div = document.createElement('div');
     question1Div.id = 'q1';
+    question1Div.style.height = '60vh';
     const question2Div = document.createElement('div');
     question2Div.id = 'q2';
+    question2Div.style.height = '80vh';
     const question3Div = document.createElement('div');
     question3Div.id = 'q3';
+    question3Div.style.height = '80vh';
     const question4Div = document.createElement('div');
     question4Div.id = 'q4';
+    question4Div.style.height = '80vh';
     const question5Div = document.createElement('div');
     question5Div.id = 'q5';
+    question5Div.style.height = '80vh';
     const question6Div = document.createElement('div');
     question6Div.id = 'q6';
+    question6Div.style.height = '80vh';
 
     const title1 = document.createElement('h3');
     title1.textContent = 'Question 1: What is your favorite pizza flavour?';
@@ -507,7 +516,12 @@ export function initQuestions() {
 
 
     questionDiv.append(question1Div);
-    root.append(questionDiv);
+    const menuBtn = document.createElement('img');
+    menuBtn.setAttribute('src', './assets/images/home/home.png');
+    menuBtn.classList.add('menuBtn');
+    clickableA(menuBtn, "welcome");
+
+    root.append(questionDiv, menuBtn);
     document.querySelector('#app').appendChild(root);
 
     function tryAgain(clickElement, buttonElement, textElement) {

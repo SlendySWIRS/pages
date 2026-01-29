@@ -1,5 +1,4 @@
 // js/sections/welcome.js
-import { loadSection } from '../main.js'
 import { clickableA } from '../utils.js'
 
 let root;
