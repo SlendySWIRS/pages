@@ -1,6 +1,11 @@
 // js/utils.js
 import { loadSection } from './main.js'
 
+const menuBtn = document.createElement('img');
+menuBtn.setAttribute('src', './assets/images/home/home.png');
+menuBtn.classList.add('menuBtn');
+clickableA(menuBtn, "home");
+
 export function clickable(element) {
     element.addEventListener('mouseenter', () => hoverOverClickable());
     element.addEventListener('mouseleave', () => hoverOutClickable());
@@ -14,6 +19,10 @@ export function clickableA(element, section) {
         hoverOutClickable();
     });
 
+}
+
+export function menu(section) {
+    section.append(menuBtn);
 }
 
 export function hoverOverClickable() {

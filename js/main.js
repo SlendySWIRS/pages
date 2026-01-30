@@ -27,6 +27,11 @@ export function loadSection(name) {
     localStorage.setItem('currentSection', window.currentSection);
 }
 
+function resetAll() {
+    loadSection('welcome');
+    localStorage.clear();
+}
+
 window.addEventListener("load", () => {
     const saved = localStorage.getItem('currentSection') || 'welcome';
     if (saved in sections) {
@@ -36,4 +41,4 @@ window.addEventListener("load", () => {
     }
 });
 
-loadSection('welcome');  // temporary
+// resetAll();  // temporary

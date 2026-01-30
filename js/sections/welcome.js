@@ -8,6 +8,7 @@ export function initWelcome() {
 
     // Root container for this section
     root = document.createElement('section');
+    root.id = 'welcome';
 
     /* ---------- First block ---------- */
 

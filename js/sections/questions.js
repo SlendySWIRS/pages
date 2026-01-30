@@ -1,9 +1,11 @@
 // js/sections/questions.js
 import { loadSection } from '../main.js'
-import { clickable } from '../utils.js'
-import { clickableA } from '../utils.js'
+import { clickable, menu } from '../utils.js'
+import { showHeartBox, saveHearts } from '../heartutils.js'
 
 let root;
+var localHearts = 0;
+
 const failMsgs = [];
 failMsgs.push("Nope, not this one", "Try again", "There should be a better response", "Are you sure?");
 
@@ -12,31 +14,31 @@ export function initQuestions() {
     root = document.createElement('section');
     root.id = 'questions';
     root.classList.add('center')
+    localHearts = localStorage.getItem('questionsHearts') || 0;
 
     /* ---------- First block ---------- */
 
     const questionDiv = document.createElement('div');
-    questionDiv.classList.add('center', 'w80');
-    questionDiv.style.height = '60vh';
+    questionDiv.classList.add('center');
 
     const question1Div = document.createElement('div');
     question1Div.id = 'q1';
-    question1Div.style.height = '60vh';
+    question1Div.classList.add('center');
     const question2Div = document.createElement('div');
     question2Div.id = 'q2';
-    question2Div.style.height = '80vh';
+    question2Div.classList.add('center');
     const question3Div = document.createElement('div');
     question3Div.id = 'q3';
-    question3Div.style.height = '80vh';
+    question3Div.classList.add('center');
     const question4Div = document.createElement('div');
     question4Div.id = 'q4';
-    question4Div.style.height = '80vh';
+    question4Div.classList.add('center');
     const question5Div = document.createElement('div');
     question5Div.id = 'q5';
-    question5Div.style.height = '80vh';
+    question5Div.classList.add('center');
     const question6Div = document.createElement('div');
     question6Div.id = 'q6';
-    question6Div.style.height = '80vh';
+    question6Div.classList.add('center');
 
     const title1 = document.createElement('h3');
     title1.textContent = 'Question 1: What is your favorite pizza flavour?';
@@ -516,12 +518,10 @@ export function initQuestions() {
 
 
     questionDiv.append(question1Div);
-    const menuBtn = document.createElement('img');
-    menuBtn.setAttribute('src', './assets/images/home/home.png');
-    menuBtn.classList.add('menuBtn');
-    clickableA(menuBtn, "welcome");
 
-    root.append(questionDiv, menuBtn);
+    root.append(questionDiv);
+    menu(root);
+    showHeartBox(root, 'questions');
     document.querySelector('#app').appendChild(root);
 
     function tryAgain(clickElement, buttonElement, textElement) {
@@ -547,18 +547,27 @@ export function initQuestions() {
                     break;
                 case 2:
                     questionDiv.replaceChild(question3Div, question2Div);
+                    localHearts = Math.max(localHearts, 1);
+                    saveHearts();
+                    showHeartBox(root, 'questions');
                     break;
                 case 3:
                     questionDiv.replaceChild(question4Div, question3Div);
                     break;
                 case 4:
                     questionDiv.replaceChild(question5Div, question4Div);
+                    localHearts = Math.max(localHearts, 2);
+                    saveHearts();
+                    showHeartBox(root, 'questions');
                     break;
                 case 5:
                     questionDiv.replaceChild(question6Div, question5Div);
                     break;
                 default:
-                    loadSection('hearts');
+                    localHearts = Math.max(localHearts, 3);
+                    saveHearts();
+                    showHeartBox(root, 'questions');
+                    loadSection('home');
                     break;
             }
         }
@@ -577,5 +586,13 @@ export function initQuestions() {
 
 export function destroyQuestions() {
     // remove timers, listeners, DOM nodes
-    root.remove();
+    root?.remove();
+}
+
+export function getHeartsQuestions() {
+    return localHearts;
+}
+
+export function resetHeartsQuestions() {
+    localHearts = 0;
 }

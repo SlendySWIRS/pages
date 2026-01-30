@@ -1,19 +1,30 @@
 // js/sections/sliding.js
 import { loadSection } from '../main.js'
-import { clickable } from '../utils.js'
-import { clickableA } from '../utils.js'
+import { menu } from '../utils.js'
+import { showHeartBox, saveHearts } from '../heartutils.js'
 
 let root;
+var localHearts = 0;
+var puzzleIndex = 0;
 
 export function initSliding() {
     const app = document.querySelector('#app');
 
     // Root container for this section
     root = document.createElement('section');
+    root.id = 'sliding';
     root.classList.add('center')
+    localHearts = localStorage.getItem('slidingHearts') || 0;
+    puzzleIndex = localStorage.getItem('puzzleIndex') || 0;
+
+    var url1 = "./assets/images/sliding/puzzle1.jpg";
+    var url2 = "./assets/images/sliding/puzzle2.jpg";
+    var url3 = "./assets/images/sliding/puzzle3.jpg";
+
+    var urls = [url1, url2, url3];
 
     var p = {
-        "diff": "100",
+        "diff": "60",
         "size": [
             768,
             1280
@@ -25,29 +36,28 @@ export function initSliding() {
         "fill": true,
         "number": false,
         "art": {
-            "url": "./assets/images/sliding/puzzle1.jpg",
             "ratio": true
         },
         "keyBoard": true,
         "gamePad": true,
         "time": 0.1,
         "style": "background-color:#c4cebb;display:grid;justify-items:center;align-items:center;font-family:Arial;color:#fff;border-radius:20px;font-size:39px;"
-    }, freeslot = [], size = [], m = [], o, f = document.createElement('div');
+    };
+    var freeslot = [], size = [], m = [], o, f;
 
     /* ---------- Assemble section ---------- */
     const fDiv = document.createElement('div');
     fDiv.classList.add("slidingRoot");
-    fDiv.append(f);
     root.append(fDiv);
     app.appendChild(root);
-    create_slots();
-    const menuBtn = document.createElement('img');
-    menuBtn.setAttribute('src', './assets/images/home/home.png');
-    menuBtn.classList.add('menuBtn');
-    clickableA(menuBtn, "welcome");
-    root.append(menuBtn);
+    create_slots(urls[(puzzleIndex) % 3]);
+    menu(root);
+    showHeartBox(root, 'sliding');
 
-    function create_slots() {
+    function create_slots(url) {
+        f?.remove();
+        f = document.createElement('div');
+        fDiv.append(f);
         size = [p.size[0] / (p.grid[0] + 1), p.size[1] / (p.grid[1] + 1)];
         let c = (p.emptySlot) ? p.emptySlot : (p.grid[1] + 1) * (p.grid[0] + 1);
         f.style.width = p.size[0] + 'px';
@@ -64,7 +74,7 @@ export function initSliding() {
                     e.addEventListener('click', () => { move_slot(Number(e.id.substring(4))) });
                     e.className = "slot";
                     if (p.number) { e.innerHTML = o }
-                    e.style = "background-image:url(" + p.art.url + ");background-size:" + ((p.art.ratio) ? p.size[0] + "px auto" : "auto " + p.size[1] + "px") + ";background-position:-" + (size[0] * x) + "px -" + (size[1] * y) + "px ;width:" + size[0] + "px;height:" + size[1] + "px;top:" + (size[1] * y) + "px;left:" + (size[0] * x) + "px;position:absolute;" + ((p.style) ? p.style : "")
+                    e.style = "background-image:url(" + url + ");background-size:" + ((p.art.ratio) ? p.size[0] + "px auto" : "auto " + p.size[1] + "px") + ";background-position:-" + (size[0] * x) + "px -" + (size[1] * y) + "px ;width:" + size[0] + "px;height:" + size[1] + "px;top:" + (size[1] * y) + "px;left:" + (size[0] * x) + "px;position:absolute;" + ((p.style) ? p.style : "")
                     if (p.time) { e.style.transitionDuration = p.time + "s" }
                     f.appendChild(e); o++;
                 } else { m[y][x] = 0; freeslot = [y, x]; o++; }
@@ -127,7 +137,25 @@ export function initSliding() {
             for (let x = 0; x <= p.grid[0]; x++) {
                 if (m[y][x] == 0 || check == m[y][x]) { check++ } else { break; }
             }
-        } if (check == o) { setTimeout(() => { alert('win') }, ((p.time) ? p.time * 1000 : 0)); } // <-- alert('win') script that runs at the end of the game
+        } if (check == o) {
+            if (localHearts < 3) {
+                localHearts++;
+                puzzleIndex = localHearts;
+                localStorage.setItem('puzzleIndex', Number(puzzleIndex));
+                saveHearts();
+                if (localHearts < 3) {
+                    showHeartBox(root, 'sliding');
+                    setTimeout(() => { create_slots(urls[(puzzleIndex) % 3]); }, ((p.time) ? p.time * 1200 : 0));
+
+                } else {
+                    setTimeout(() => { loadSection('home'); }, ((p.time) ? p.time * 1500 : 0));
+                }
+            } else {
+                puzzleIndex++;
+                localStorage.setItem('puzzleIndex', puzzleIndex);
+                setTimeout(() => { loadSection('home'); }, ((p.time) ? p.time * 1500 : 0));
+            }
+        } // <-- alert('win') script that runs at the end of the game
     }
     function fifteen_resize() {
         let rect = f.parentNode.getBoundingClientRect();
@@ -169,4 +197,12 @@ export function initSliding() {
 export function destroySliding() {
     // remove timers, listeners, DOM nodes
     root.remove();
+}
+
+export function getHeartsSliding() {
+    return localHearts;
+}
+
+export function resetHeartsSliding() {
+    localHearts = 0;
 }

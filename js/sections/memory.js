@@ -1,13 +1,16 @@
 // js/sections/memory.js
-import { clickableA } from '../utils.js'
+import { menu } from '../utils.js'
+import { showHeartBox, saveHearts } from '../heartutils.js'
 
 let root;
+var localHearts = 0;
 
 export function initMemory() {
     console.log("MEMORY");
     root = document.createElement('section');
     root.id = 'memory';
     root.classList.add('center')
+    localHearts = localStorage.getItem('memoryHearts') || 0;
 
     /* ---------- First block ---------- */
 
@@ -31,11 +34,8 @@ export function initMemory() {
     })
 
     root.append(memoryDiv);
-    const menuBtn = document.createElement('img');
-    menuBtn.setAttribute('src', './assets/images/home/home.png');
-    menuBtn.classList.add('menuBtn');
-    clickableA(menuBtn, "welcome");
-    root.append(menuBtn);
+    menu(root);
+    showHeartBox(root, 'memory');
     document.querySelector('#app').appendChild(root);
 
     const cards = document.querySelectorAll('.memory-card');
@@ -103,4 +103,12 @@ export function initMemory() {
 export function destroyMemory() {
     // remove timers, listeners, DOM nodes
     root.remove();
+}
+
+export function getHeartsMemory() {
+    return localHearts;
+}
+
+export function resetHeartsMemory() {
+    localHearts = 0;
 }

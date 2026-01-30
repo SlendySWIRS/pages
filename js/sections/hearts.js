@@ -10,9 +10,6 @@ export function initHearts() {
 
     // create SVG, animations, listeners here
 
-    const canvasWidth = window.innerWidth;
-    const canvasHeight = window.innerHeight;
-
     // viewBox size
     const vbWidth = 100;
     const vbHeight = 100;
@@ -20,13 +17,10 @@ export function initHearts() {
     console.log("VBW: " + vbWidth);
     console.log("VBH: " + vbHeight);
 
-    const scaleX = vbWidth / canvasWidth;
-    const scaleY = vbHeight / canvasHeight;
-
     const canvas = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    canvas.setAttribute('viewBox', `0 0 ${vbWidth} ${vbHeight}`);
+    canvas.setAttribute('viewBox', '0 0 100 100');
     canvas.style.width = '100vw';
-    canvas.style.height = '100vh';
+    canvas.style.height = '10vh';
     canvas.style.position = 'absolute';
     canvas.style.top = 0;
     canvas.style.left = 0;

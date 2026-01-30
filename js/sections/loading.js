@@ -1,8 +1,10 @@
 // js/sections/loading.js
 import { loadSection } from '../main.js'
-import { clickable } from '../utils.js'
+import { clickable, menu } from '../utils.js'
 
 let root;
+var localHearts = 0;
+
 const failMsgs = [];
 failMsgs.push("Nope, not this one", "Try again", "There should be a better response", "Are you sure?");
 
@@ -11,10 +13,11 @@ export function initLoading() {
     root = document.createElement('section');
     root.id = 'loading';
     root.classList.add('center')
+    localHearts = localStorage.getItem('loadingHearts') || 0;
 
     /* ---------- First block ---------- */
     const questionDiv = document.createElement('div');
-    questionDiv.classList.add('center', 'w80');
+    questionDiv.classList.add('center');
 
     const question1Div = document.createElement('div');
     question1Div.id = 'q1';
@@ -185,6 +188,7 @@ export function initLoading() {
 
     questionDiv.append(question1Div);
     root.append(questionDiv);
+    menu(root);
     document.querySelector('#app').appendChild(root);
 
     function tryAgain(element) {
@@ -224,4 +228,12 @@ export function initLoading() {
 export function destroyLoading() {
     // remove timers, listeners, DOM nodes
     root.remove();
+}
+
+export function getHeartsLoading() {
+    return localHearts;
+}
+
+export function resetHeartsLoading() {
+    localHearts = 0;
 }
