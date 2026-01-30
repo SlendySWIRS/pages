@@ -69,6 +69,15 @@ export function showHeartBox(section, name) {
         heartBox.append(heart);
         i++;
     }
+    const line = document.createElement('div');
+    line.style.width = 0;
+    line.style.height = '100%';
+    line.style.position = 'absolute';
+    line.style.left = 'calc(5 * 100% / 6)';
+    line.style.borderStyle = 'solid';
+    line.style.borderColor = 'black';
+    line.style.borderWidth = '2px';
+    heartBox.append(line);
     section.append(heartBox);
 }
 

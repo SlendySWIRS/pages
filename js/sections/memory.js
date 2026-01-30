@@ -4,6 +4,7 @@ import { showHeartBox, saveHearts } from '../heartutils.js'
 
 let root;
 var localHearts = 0;
+var revealedPairs = 0;
 
 export function initMemory() {
     console.log("MEMORY");
@@ -70,6 +71,21 @@ export function initMemory() {
     function disableCards() {
         firstCard.removeEventListener('click', flipCard);
         secondCard.removeEventListener('click', flipCard);
+        revealedPairs++;
+        if (revealedPairs == 4) {
+            localHearts = Math.max(localHearts, 1);
+            saveHearts();
+            showHeartBox(root, 'memory');
+        } else if (revealedPairs == 8) {
+            localHearts = Math.max(localHearts, 2);
+            saveHearts();
+            showHeartBox(root, 'memory');
+        } else if (revealedPairs == 12) {
+            localHearts = Math.max(localHearts, 3);
+            saveHearts();
+            showHeartBox(root, 'memory');
+            setTimeout(() => { loadSection('home'); }, 200);
+        }
 
         resetBoard();
     }
@@ -82,7 +98,21 @@ export function initMemory() {
             secondCard.classList.remove('flip');
 
             resetBoard();
-        }, 1500);
+        }, 1000);
+    }
+
+    function unflipAllCards() {
+        lockBoard = true;
+        revealedPairs = 0;
+
+        setTimeout(() => {
+            cards.forEach(card => {
+                card.classList.remove('flip');
+                card.addEventListener('click', flipCard)
+            });
+
+            resetBoard();
+        }, 1000);
     }
 
     function resetBoard() {

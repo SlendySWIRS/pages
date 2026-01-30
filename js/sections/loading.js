@@ -1,12 +1,9 @@
 // js/sections/loading.js
-import { loadSection } from '../main.js'
-import { clickable, menu } from '../utils.js'
+import { menu } from '../utils.js'
+import { saveHearts, showHeartBox } from '../heartutils.js'
 
 let root;
 var localHearts = 0;
-
-const failMsgs = [];
-failMsgs.push("Nope, not this one", "Try again", "There should be a better response", "Are you sure?");
 
 export function initLoading() {
     console.log("LOADING");
@@ -15,214 +12,263 @@ export function initLoading() {
     root.classList.add('center')
     localHearts = localStorage.getItem('loadingHearts') || 0;
 
-    /* ---------- First block ---------- */
-    const questionDiv = document.createElement('div');
-    questionDiv.classList.add('center');
+    const loadingDiv = document.createElement("div");
+    loadingDiv.style.height = '80vh';
+    loadingDiv.style.display = 'grid';
+    loadingDiv.style.justifyContent = 'center';
+    loadingDiv.style.alignItems = 'center';
 
-    const question1Div = document.createElement('div');
-    question1Div.id = 'q1';
-    const question2Div = document.createElement('div');
-    question2Div.id = 'q2';
-    const question3Div = document.createElement('div');
-    question3Div.id = 'q3';
-    const question4Div = document.createElement('div');
-    question4Div.id = 'q4';
-    const question5Div = document.createElement('div');
-    question5Div.id = 'q5';
+    // BAR 1
+    const container = document.createElement("div");
+    container.classList.add('barContainer', 'noselect');
+    const bar = document.createElement("img");
+    bar.classList.add('barBg', 'noselect');
+    bar.setAttribute('src', "./assets/images/loading/bar.png");
+    const border = document.createElement("img");
+    border.classList.add('barBorder', 'noselect');
+    border.setAttribute('src', "./assets/images/loading/border.png");
+    const mask = document.createElement("div");
+    mask.classList.add('barFillMask', 'noselect');
+    const fill = document.createElement("img");
+    fill.classList.add('barFill', 'noselect');
+    fill.setAttribute('src', "./assets/images/loading/progress.png");
+    mask.append(fill);
+    container.append(bar, mask, border);
 
-    const title1 = document.createElement('h3');
-    title1.textContent = 'First question (out of 5):';
+    // BAR 2
+    const container2 = document.createElement("div");
+    container2.classList.add('barContainer', 'noselect');
+    const bar2 = document.createElement("img");
+    bar2.classList.add('barBg', 'noselect');
+    bar2.setAttribute('src', "./assets/images/loading/bar.png");
+    const border2 = document.createElement("img");
+    border2.classList.add('barBorder', 'noselect');
+    border2.setAttribute('src', "./assets/images/loading/border.png");
+    const mask2 = document.createElement("div");
+    mask2.classList.add('barFillMask', 'noselect');
+    const fill2 = document.createElement("img");
+    fill2.classList.add('barFill', 'noselect');
+    fill2.setAttribute('src', "./assets/images/loading/progress.png");
+    mask2.append(fill2);
+    const bar2Handle = document.createElement("div");
+    bar2Handle.classList.add('bar2Handle', 'noselect');
+    container2.append(bar2, mask2, border2, bar2Handle);
 
-    const question1 = document.createElement('p');
-    question1.textContent = 'What is your favorite pizza flavour?';
+    // BAR 3
+    const container3 = document.createElement("div");
+    container3.classList.add('barContainer', 'noselect');
+    const bar3 = document.createElement("img");
+    bar3.classList.add('barBg', 'noselect');
+    bar3.setAttribute('src', "./assets/images/loading/bar.png");
+    const border3 = document.createElement("img");
+    border3.classList.add('barBorder', 'noselect');
+    border3.setAttribute('src', "./assets/images/loading/border.png");
+    const mask3 = document.createElement("div");
+    mask3.classList.add('barFillMask', 'noselect');
+    const fill3 = document.createElement("img");
+    fill3.classList.add('barFill', 'noselect');
+    fill3.setAttribute('src', "./assets/images/loading/progress.png");
+    mask3.append(fill3);
+    const bar3Handle = document.createElement("div");
+    bar3Handle.classList.add('bar2Handle', 'noselect');
+    const bar3BarHandle = document.createElement("div");
+    bar3BarHandle.classList.add('bar2Handle', 'noselect');
+    container3.append(bar3, mask3, border3, bar3Handle, bar3BarHandle);
 
-    const answer1_1 = document.createElement('p');
-    answer1_1.textContent = 'Pizza Funghi';
-    clickable(answer1_1);
-    tryAgain(answer1_1);
-
-    const answer1_2 = document.createElement('p');
-    answer1_2.textContent = 'Pizza Salame';
-    clickable(answer1_2);
-    tryAgain(answer1_2);
-
-    const answer1_3 = document.createElement('p');
-    answer1_3.textContent = 'Pizza Margherita';
-    clickable(answer1_3);
-    answer1_3.addEventListener('click', () => nextQuestion());
-    const answer1_4 = document.createElement('p');
-    answer1_4.textContent = 'Pizza Quattri Formaggi';
-    clickable(answer1_4);
-    tryAgain(answer1_4);
-
-    question1Div.append(title1, question1, answer1_1, answer1_2, answer1_3, answer1_4);
-
-
-    const title2 = document.createElement('h3');
-    title2.textContent = 'Question 2:';
-
-    const question2 = document.createElement('p');
-    question2.textContent = 'What is the worst crime (according to you)?';
-
-    const answer2_1 = document.createElement('p');
-    answer2_1.textContent = 'Keeping merchants alive';
-    clickable(answer2_1);
-    tryAgain(answer2_1);
-
-    const answer2_2 = document.createElement('p');
-    answer2_2.textContent = 'Watching other people\'s streams';
-    clickable(answer2_2);
-    tryAgain(answer2_2);
-
-    const answer2_3 = document.createElement('p');
-    answer2_3.textContent = 'Putting pineapple where it doesn\'t belong';
-    clickable(answer2_3);
-    tryAgain(answer2_3);
-
-    const answer2_4 = document.createElement('p');
-    answer2_4.textContent = 'Leaving the basement';
-    clickable(answer2_4);
-    tryAgain(answer2_4);
-
-    const answer2_5 = document.createElement('p');
-    answer2_5.textContent = 'All of the above';
-    clickable(answer2_5);
-    answer2_5.addEventListener('click', () => nextQuestion());
-
-    question2Div.append(title2, question2, answer2_1, answer2_2, answer2_3, answer2_4, answer2_5);
-
-
-    const title3 = document.createElement('h3');
-    title3.textContent = 'Question 3 (3 to go now!):';
-
-    const question3 = document.createElement('p');
-    question3.textContent = 'Have you ever participated in any sports, and if so: which?';
-
-    const answer3_1 = document.createElement('p');
-    answer3_1.textContent = 'No!';
-    clickable(answer3_1);
-    tryAgain(answer3_1);
-
-    const answer3_2 = document.createElement('p');
-    answer3_2.textContent = 'Yes, I used to play volleyball';
-    clickable(answer3_2);
-    answer3_2.addEventListener('click', () => nextQuestion());
-
-    const answer3_3 = document.createElement('p');
-    answer3_3.textContent = 'Yes, I am an Olympic swimming champion!';
-    clickable(answer3_3);
-    tryAgain(answer3_3);
-
-    const answer3_4 = document.createElement('p');
-    answer3_4.textContent = 'Sports? I only play chess (on a casual level)';
-    clickable(answer3_4);
-    tryAgain(answer3_4);
-
-    question3Div.append(title3, question3, answer3_1, answer3_2, answer3_3, answer3_4);
-
-
-    const title4 = document.createElement('h3');
-    title4.textContent = 'Question 4:';
-
-    const question4 = document.createElement('p');
-    question4.textContent = 'When is your birthday?';
-
-    const answer4_1 = document.createElement('p');
-    answer4_1.textContent = 'On the 25th of December (By the way, my name is Jesus)';
-    clickable(answer4_1);
-    tryAgain(answer4_1);
-
-    const answer4_2 = document.createElement('p');
-    answer4_2.textContent = 'Exactly 5 days after Easter';
-    clickable(answer4_2);
-    tryAgain(answer4_2);
-
-    const answer4_3 = document.createElement('p');
-    answer4_3.textContent = 'Today, silly! (but only if we are the 8th of February now)';
-    clickable(answer4_3);
-    answer4_3.addEventListener('click', () => nextQuestion());
-
-
-
-    question4Div.append(title4, question4, answer4_1, answer4_2, answer4_3);
-
-
-    const title5 = document.createElement('h3');
-    title5.textContent = 'Last question (finally):';
-
-    const question5 = document.createElement('p');
-    question5.textContent = 'Do you consider yourself the cutest person alive?';
-
-    const answer5_1 = document.createElement('p');
-    answer5_1.textContent = 'Yes';
-    clickable(answer5_1);
-    answer5_1.addEventListener('click', () => nextQuestion());
-
-    let clicked = false;
-    let ready = false;
-    const answer5_2 = document.createElement('p');
-    answer5_2.textContent = 'No';
-    clickable(answer5_2);
-    answer5_2.addEventListener('mouseenter', () => {
-        if (!clicked) answer5_2.textContent = 'HEY! •`_\´•';
-        else answer5_2.textContent = 'Of course! (✿◠‿◠)';
-    });
-    answer5_2.addEventListener('mouseleave', () => {
-        if (!clicked) answer5_2.textContent = 'No!';
-    });
-    answer5_2.addEventListener('click', () => {
-        if (!clicked) {
-            clicked = true;
-            answer5_2.textContent = 'Fine, let\'s play it your way!';
-            setTimeout(() => {
-                answer5_2.textContent = 'Of course! (✿◠‿◠)';
-                ready = true;
-            }, 1000);
-        } else if (ready) {
-            nextQuestion();
-        }
-    });
-
-    question5Div.append(title5, question5, answer5_1, answer5_2);
-
-
-    questionDiv.append(question1Div);
-    root.append(questionDiv);
+    // ASSEMBLE
+    loadingDiv.append(container, container2, container3);
+    root.append(loadingDiv);
     menu(root);
+    showHeartBox(root, 'loading');
     document.querySelector('#app').appendChild(root);
 
-    function tryAgain(element) {
-        let oldText = element.textContent;
-        element.addEventListener('click', () => {
-            let textIndex = Math.floor(Math.random() * 4);
-            element.textContent = failMsgs[textIndex];
-            setTimeout(() => { element.textContent = oldText; }, 1000);
-        });
+
+    const TARGET = 60;
+    const BOOST = 5;
+    const AUTO2_LIMIT = 20;
+    const BAR2_WIDTH = 400;
+    const BAR3_MAX_WIDTH = 400;
+    const PROGRESS_LIMIT3 = 80;
+
+    let progress = 0;
+
+    let progress2 = 0;
+    let dragging2 = false;
+
+    let progress3 = 0;
+    let progressPx3 = (progress3 / 100) * BAR3_MAX_WIDTH;
+    let barWidth3 = BAR3_MAX_WIDTH;
+    let dragging3 = false;
+    let maxProgressReached = false;
+    let draggingEnd3 = false;
+
+    let bar1Finish = false;
+    let bar2Finish = false;
+    let bar3Finish = false;
+    let bar1FinishFirst = localStorage.getItem('bar1FinishFirst') || false;
+    let bar2FinishFirst = localStorage.getItem('bar2FinishFirst') || false;
+    let bar3FinishFirst = localStorage.getItem('bar3FinishFirst') || false;
+
+    // Update visual
+    function render() {
+        mask.style.width = `${Math.max(0, Math.min(100, progress))}%`;
+        mask2.style.width = `${progress2}%`;
+        bar2Handle.style.left = `${(progress2 / 100) * BAR2_WIDTH}px`;
+        container3.style.width = barWidth3 + "px";
+        progressPx3 = (progress3 / 100) * BAR3_MAX_WIDTH;
+        mask3.style.width = progressPx3 + "px";
+        bar3Handle.style.left = `${(progress3 / 100) * barWidth3}px`;
+        bar3BarHandle.style.left = `${barWidth3}px`;
     }
 
-    function nextQuestion() {
-        var currentQuestion = questionDiv.firstChild;
-        if (currentQuestion.id) {
-            var question = Number(currentQuestion.id.charAt(1));
-            switch (question) {
-                case 1:
-                    questionDiv.replaceChild(question2Div, question1Div);
-                    break;
-                case 2:
-                    questionDiv.replaceChild(question3Div, question2Div);
-                    break;
-                case 3:
-                    questionDiv.replaceChild(question4Div, question3Div);
-                    break;
-                case 4:
-                    questionDiv.replaceChild(question5Div, question4Div);
-                    break;
-                default:
-                    loadSection('hearts');
-                    break;
+    // Click = instant boost
+    container.addEventListener("click", () => {
+        if (bar1Finish) { return; }
+        progress += BOOST;
+        if (progress >= 100) {
+            bar1Finish = true;
+            if (!bar1FinishFirst) {
+                localStorage.setItem('bar1FinishFirst', true);
+                localHearts++;
+                saveHearts();
+                showHeartBox(root, 'loading');
             }
         }
+        render();
+    });
+
+    bar2Handle.addEventListener("mousedown", e => {
+        if (bar2Finish) { return; }
+        dragging2 = true;
+    });
+
+    document.addEventListener("mouseup", () => {
+        dragging2 = false;
+        dragging3 = false;
+        draggingEnd3 = false;
+    });
+
+    document.addEventListener("mousemove", e => {
+        if (!dragging2) return;
+        if (bar2Finish) { return; }
+
+        const rect = container2.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const clamped = Math.max(0, Math.min(BAR2_WIDTH, x));
+
+        progress2 = (clamped / BAR2_WIDTH) * 100;
+        if (progress2 >= 100) {
+            bar2Handle.style.cursor = "url('https://cdn.custom-cursor.com/db/5358/32/legend-of-zelda-link-master-sword-cursor-b.png'), auto";
+            bar2Finish = true;
+            if (!bar2FinishFirst) {
+                localStorage.setItem('bar2FinishFirst', true);
+                localHearts++;
+                saveHearts();
+                showHeartBox(root, 'loading');
+            }
+        }
+        render();
+    });
+
+    bar3Handle.addEventListener("mousedown", () => {
+        if (bar3Finish) { return; }
+        dragging3 = true;
+    });
+
+    document.addEventListener("mousemove", e => {
+        if (!dragging3) return;
+        if (bar3Finish) { return; }
+
+        const rect = container3.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const clampedX = Math.max(0, Math.min(BAR3_MAX_WIDTH, x));
+
+        if (progress3 < PROGRESS_LIMIT3) {
+            // PHASE 1: dragging increases progress (20 → 80)
+            progress3 = Math.min(PROGRESS_LIMIT3, (clampedX / BAR3_MAX_WIDTH) * 100);
+        } else {
+            bar3Handle.style.cursor = "url('https://cdn.custom-cursor.com/db/5358/32/legend-of-zelda-link-master-sword-cursor-b.png'), auto";
+            maxProgressReached = true;
+        }
+
+        render();
+    });
+
+    bar3BarHandle.addEventListener("mousedown", () => {
+        if (bar3Finish) { return; }
+        draggingEnd3 = true;
+    });
+
+    document.addEventListener("mousemove", e => {
+        if (!draggingEnd3 || !maxProgressReached) return;
+        if (bar3Finish) { return; }
+
+        const rect = container3.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+
+        // Clamp drag position inside container
+        const clampedX = Math.max(0, Math.min(BAR3_MAX_WIDTH, x));
+
+        // Minimum bar width needed to visually contain 80% progress
+        const minBarWidth3 = (progress3 / 100) * BAR3_MAX_WIDTH;
+
+        // Shrink bar but never below progress
+        barWidth3 = Math.max(minBarWidth3, clampedX);
+
+        if (barWidth3 <= minBarWidth3) {
+            bar3BarHandle.style.cursor = "url('https://cdn.custom-cursor.com/db/5358/32/legend-of-zelda-link-master-sword-cursor-b.png'), auto";
+            bar3Finish = true;
+            if (!bar3FinishFirst) {
+                localStorage.setItem('bar3FinishFirst', true);
+                localHearts++;
+                saveHearts();
+                showHeartBox(root, 'loading');
+            }
+        }
+        render();
+    });
+
+
+    // Natural movement toward 60%
+    function update() {
+        if (bar1Finish) { return; }
+        const diff = TARGET - progress;
+
+        // Slowdown factor: closer to target → smaller step
+        const speed = Math.min(Math.max(0.005, Math.abs(diff) * 0.005), 0.15);
+
+        if (Math.abs(diff) > 0.05) {
+            progress += Math.sign(diff) * speed;
+            render();
+        }
+
+        requestAnimationFrame(update);
     }
+
+    update();
+
+    function autoUpdate2() {
+        if (bar2Finish) { return; }
+        if (!dragging2 && progress2 < AUTO2_LIMIT) {
+            progress2 += 0.05; // slow, steady fill
+            render();
+        }
+        requestAnimationFrame(autoUpdate2);
+    }
+
+    autoUpdate2();
+
+    function autoUpdate3() {
+        if (bar3Finish) { return; }
+        if (!dragging3 && progress3 < 20) {
+            progress3 += 0.05;
+            render();
+        }
+        requestAnimationFrame(autoUpdate3);
+    }
+
+    autoUpdate3();
+
 }
 
 export function destroyLoading() {

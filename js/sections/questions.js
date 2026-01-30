@@ -567,7 +567,7 @@ export function initQuestions() {
                     localHearts = Math.max(localHearts, 3);
                     saveHearts();
                     showHeartBox(root, 'questions');
-                    loadSection('home');
+                    setTimeout(() => { loadSection('home'); }, 200);
                     break;
             }
         }

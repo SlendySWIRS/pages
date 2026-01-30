@@ -148,12 +148,12 @@ export function initSliding() {
                     setTimeout(() => { create_slots(urls[(puzzleIndex) % 3]); }, ((p.time) ? p.time * 1200 : 0));
 
                 } else {
-                    setTimeout(() => { loadSection('home'); }, ((p.time) ? p.time * 1500 : 0));
+                    setTimeout(() => { loadSection('home'); }, 200);
                 }
             } else {
                 puzzleIndex++;
                 localStorage.setItem('puzzleIndex', puzzleIndex);
-                setTimeout(() => { loadSection('home'); }, ((p.time) ? p.time * 1500 : 0));
+                setTimeout(() => { loadSection('home'); }, 200);
             }
         } // <-- alert('win') script that runs at the end of the game
     }
