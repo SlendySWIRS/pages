@@ -112,3 +112,22 @@ body,
   grid-template-columns: repeat(12, 1fr);
   gap: 5px;
 }
+
+.localHearts {
+  height: 4vh;
+  width: 5vw;
+  border-color: black;
+  border-width: 3px;
+  border-style: solid;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  align-items: center;
+  justify-self: center;
+  padding-left: 2px;
+  padding-right: 2px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}

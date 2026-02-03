@@ -6,6 +6,7 @@ import { initHearts, destroyHearts } from './sections/hearts.js';
 import { initSliding, destroySliding } from './sections/sliding.js';
 import { initMemory, destroyMemory } from './sections/memory.js';
 import { initLoading, destroyLoading } from './sections/loading.js';
+import { initBook, destroyBook } from './sections/book.js';
 
 const sections = {
     welcome: { init: initWelcome, destroy: destroyWelcome },
@@ -14,7 +15,8 @@ const sections = {
     hearts: { init: initHearts, destroy: destroyHearts },
     sliding: { init: initSliding, destroy: destroySliding },
     memory: { init: initMemory, destroy: destroyMemory },
-    loading: { init: initLoading, destroy: destroyLoading }
+    loading: { init: initLoading, destroy: destroyLoading },
+    book: { init: initBook, destroy: destroyBook }
 };
 
 export function loadSection(name) {
@@ -28,17 +30,17 @@ export function loadSection(name) {
 }
 
 function resetAll() {
-    loadSection('welcome');
     localStorage.clear();
+    loadSection('book');
 }
 
 window.addEventListener("load", () => {
-    const saved = localStorage.getItem('currentSection') || 'welcome';
+    const saved = localStorage.getItem('currentSection') || 'book';
     if (saved in sections) {
         loadSection(saved);
     } else {
-        loadSection('welcome');
+        loadSection('book');
     }
 });
 
-// resetAll();  // temporary
+resetAll();  // temporary

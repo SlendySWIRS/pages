@@ -4,7 +4,7 @@ import { getHeartsSliding } from './sections/sliding.js';
 import { getHeartsMemory } from './sections/memory.js';
 import { getHeartsLoading } from './sections/loading.js';
 
-var hearts = localStorage.getItem('totalHearts') || 0;
+export var hearts = localStorage.getItem('totalHearts') || 0;
 
 const heartSections = {
     questions: { getHearts: getHeartsQuestions },
@@ -79,6 +79,22 @@ export function showHeartBox(section, name) {
     line.style.borderWidth = '2px';
     heartBox.append(line);
     section.append(heartBox);
+}
+
+export function showLocalHearts(section, name) {
+    const localHearts = document.createElement('div');
+    localHearts.classList.add('localHearts');
+
+    const local = heartSections[name].getHearts();
+    let i = 0;
+    while (i < local) {
+        var heart = document.createElement('div');
+        heart.style.display = 'grid';
+        createSvgInstance('../assets/svgs/heart.svg', heart);
+        localHearts.append(heart);
+        i++;
+    }
+    section.append(localHearts);
 }
 
 export function saveHearts() {

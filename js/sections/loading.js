@@ -5,6 +5,10 @@ import { saveHearts, showHeartBox } from '../heartutils.js'
 let root;
 var localHearts = 0;
 
+let updateFrameId = null;
+let autoupdate2FrameId = null;
+let autoupdate3FrameId = null;
+
 export function initLoading() {
     console.log("LOADING");
     root = document.createElement('section');
@@ -105,9 +109,9 @@ export function initLoading() {
     let bar1Finish = false;
     let bar2Finish = false;
     let bar3Finish = false;
-    let bar1FinishFirst = localStorage.getItem('bar1FinishFirst') || false;
-    let bar2FinishFirst = localStorage.getItem('bar2FinishFirst') || false;
-    let bar3FinishFirst = localStorage.getItem('bar3FinishFirst') || false;
+    let bar1FinishDone = localStorage.getItem('bar1FinishDone') || false;
+    let bar2FinishDone = localStorage.getItem('bar2FinishDone') || false;
+    let bar3FinishDone = localStorage.getItem('bar3FinishDone') || false;
 
     // Update visual
     function render() {
@@ -127,8 +131,8 @@ export function initLoading() {
         progress += BOOST;
         if (progress >= 100) {
             bar1Finish = true;
-            if (!bar1FinishFirst) {
-                localStorage.setItem('bar1FinishFirst', true);
+            if (!bar1FinishDone) {
+                localStorage.setItem('bar1FinishDone', true);
                 localHearts++;
                 saveHearts();
                 showHeartBox(root, 'loading');
@@ -160,11 +164,14 @@ export function initLoading() {
         if (progress2 >= 100) {
             bar2Handle.style.cursor = "url('https://cdn.custom-cursor.com/db/5358/32/legend-of-zelda-link-master-sword-cursor-b.png'), auto";
             bar2Finish = true;
-            if (!bar2FinishFirst) {
-                localStorage.setItem('bar2FinishFirst', true);
+            if (!bar2FinishDone) {
+                localStorage.setItem('bar2FinishDone', true);
                 localHearts++;
                 saveHearts();
                 showHeartBox(root, 'loading');
+                if (localHearts == 3) {
+                    setTimeout(() => { loadSection('home'); }, 200);
+                }
             }
         }
         render();
@@ -218,11 +225,14 @@ export function initLoading() {
         if (barWidth3 <= minBarWidth3) {
             bar3BarHandle.style.cursor = "url('https://cdn.custom-cursor.com/db/5358/32/legend-of-zelda-link-master-sword-cursor-b.png'), auto";
             bar3Finish = true;
-            if (!bar3FinishFirst) {
-                localStorage.setItem('bar3FinishFirst', true);
+            if (!bar3FinishDone) {
+                localStorage.setItem('bar3FinishDone', true);
                 localHearts++;
                 saveHearts();
                 showHeartBox(root, 'loading');
+                if (localHearts == 3) {
+                    setTimeout(() => { loadSection('home'); }, 200);
+                }
             }
         }
         render();
@@ -238,11 +248,14 @@ export function initLoading() {
         const speed = Math.min(Math.max(0.005, Math.abs(diff) * 0.005), 0.15);
 
         if (Math.abs(diff) > 0.05) {
+            let change = Math.sign(diff) * speed;
+            change = Math.max(-0.05, change);
+            console.log(change);
             progress += Math.sign(diff) * speed;
             render();
         }
 
-        requestAnimationFrame(update);
+        updateFrameId = requestAnimationFrame(update);
     }
 
     update();
@@ -253,7 +266,7 @@ export function initLoading() {
             progress2 += 0.05; // slow, steady fill
             render();
         }
-        requestAnimationFrame(autoUpdate2);
+        autoupdate2FrameId = requestAnimationFrame(autoUpdate2);
     }
 
     autoUpdate2();
@@ -264,7 +277,7 @@ export function initLoading() {
             progress3 += 0.05;
             render();
         }
-        requestAnimationFrame(autoUpdate3);
+        autoupdate3FrameId = requestAnimationFrame(autoUpdate3);
     }
 
     autoUpdate3();
@@ -273,11 +286,15 @@ export function initLoading() {
 
 export function destroyLoading() {
     // remove timers, listeners, DOM nodes
+    cancelAnimationFrame(updateFrameId);
+    cancelAnimationFrame(autoupdate2FrameId);
+    cancelAnimationFrame(autoupdate3FrameId);
     root.remove();
 }
 
 export function getHeartsLoading() {
-    return localHearts;
+    let hearts = localHearts > 0 ? localHearts : localStorage.getItem('loadingHearts');
+    return hearts || 0;
 }
 
 export function resetHeartsLoading() {

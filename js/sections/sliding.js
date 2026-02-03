@@ -153,7 +153,7 @@ export function initSliding() {
             } else {
                 puzzleIndex++;
                 localStorage.setItem('puzzleIndex', puzzleIndex);
-                setTimeout(() => { loadSection('home'); }, 200);
+                setTimeout(() => { create_slots(urls[(puzzleIndex) % 3]); }, ((p.time) ? p.time * 1200 : 0));
             }
         } // <-- alert('win') script that runs at the end of the game
     }
@@ -200,7 +200,8 @@ export function destroySliding() {
 }
 
 export function getHeartsSliding() {
-    return localHearts;
+    let hearts = localHearts > 0 ? localHearts : localStorage.getItem('slidingHearts');
+    return hearts || 0;
 }
 
 export function resetHeartsSliding() {

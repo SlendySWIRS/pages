@@ -1,4 +1,5 @@
 // js/sections/memory.js
+import { loadSection } from '../main.js'
 import { menu } from '../utils.js'
 import { showHeartBox, saveHearts } from '../heartutils.js'
 
@@ -74,6 +75,7 @@ export function initMemory() {
         revealedPairs++;
         if (revealedPairs == 4) {
             localHearts = Math.max(localHearts, 1);
+            console.log("localHearts: " + localHearts);
             saveHearts();
             showHeartBox(root, 'memory');
         } else if (revealedPairs == 8) {
@@ -98,7 +100,7 @@ export function initMemory() {
             secondCard.classList.remove('flip');
 
             resetBoard();
-        }, 1000);
+        }, 600);
     }
 
     function unflipAllCards() {
@@ -136,7 +138,8 @@ export function destroyMemory() {
 }
 
 export function getHeartsMemory() {
-    return localHearts;
+    let hearts = localHearts > 0 ? localHearts : localStorage.getItem('memoryHearts');
+    return hearts || 0;
 }
 
 export function resetHeartsMemory() {

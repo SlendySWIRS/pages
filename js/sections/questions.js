@@ -590,7 +590,8 @@ export function destroyQuestions() {
 }
 
 export function getHeartsQuestions() {
-    return localHearts;
+    let hearts = localHearts > 0 ? localHearts : localStorage.getItem('questionsHearts');
+    return hearts || 0;
 }
 
 export function resetHeartsQuestions() {

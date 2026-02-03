@@ -1,5 +1,6 @@
 // js/sections/home.js
 import { clickableA } from '../utils.js'
+import { hearts, showLocalHearts } from '../heartutils.js'
 
 let root;
 
@@ -21,11 +22,15 @@ export function initHome() {
 
     const p1 = document.createElement('p');
     p1.classList.add('center', 'noMarginTop');
-    p1.textContent = 'You currently have x/X heartflies';
+    p1.textContent = `You currently have ${hearts}/12 heartflies`;
 
     const p2 = document.createElement('p');
     p2.classList.add('center', 'noMargin');
-    p2.textContent = 'Your goal is to find 10 of them to unlock the Book of Hearts |';
+    if (hearts >= 10) {
+        p2.textContent = 'This means you have unlocked the Book of Hearts!';
+    } else {
+        p2.textContent = 'Your goal is to find 10 of them to unlock the Book of Hearts |';
+    }
 
     const p3 = document.createElement('p');
     p3.style.width = '60%';
@@ -35,7 +40,7 @@ export function initHome() {
 
     const p4 = document.createElement('p');
     p4.classList.add('center', 'noMarginTop');
-    p4.textContent = 'Below, you can see how many you already found in each game!';
+    p4.textContent = 'Below, you can see how many you already found in each game.';
 
     const p5 = document.createElement('p');
     p5.classList.add('center', 'noMarginTop');
@@ -64,6 +69,7 @@ export function initHome() {
     questionBtnText.textContent = 'Hana\'s trivia';
     questionBtnText.classList.add("btnText");
     clickableA(questionBtnText, "questions");
+    showLocalHearts(questionBtnDiv, "questions");
     questionBtnDiv.append(questionBtn, questionBtnText);
 
     const slidingBtnDiv = document.createElement('div');
@@ -78,6 +84,7 @@ export function initHome() {
     slidingBtnText.textContent = 'Sliding puzzle';
     slidingBtnText.classList.add("btnText");
     clickableA(slidingBtnText, "sliding");
+    showLocalHearts(slidingBtnDiv, "sliding");
     slidingBtnDiv.append(slidingBtn, slidingBtnText);
 
     const memoryBtnDiv = document.createElement('div');
@@ -92,6 +99,7 @@ export function initHome() {
     memoryBtnText.textContent = 'Memory game';
     memoryBtnText.classList.add("btnText");
     clickableA(memoryBtnText, "memory");
+    showLocalHearts(memoryBtnDiv, "memory");
     memoryBtnDiv.append(memoryBtn, memoryBtnText);
 
     const loadingBtnDiv = document.createElement('div');
@@ -106,11 +114,17 @@ export function initHome() {
     loadingBtnText.textContent = 'Free hearts?';
     loadingBtnText.classList.add("btnText");
     clickableA(loadingBtnText, "loading");
+    showLocalHearts(loadingBtnDiv, "loading");
     loadingBtnDiv.append(loadingBtn, loadingBtnText);
 
     colsDiv.append(questionBtnDiv, slidingBtnDiv, memoryBtnDiv, loadingBtnDiv);
 
     mainDiv.append(colsDiv);
+
+    /* ---------- Third block ---------- */
+
+    const bookDiv = document.createElement('div');
+    
 
     /* ---------- Assemble section ---------- */
 
