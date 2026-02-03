@@ -149,12 +149,14 @@ export function initBook() {
     root.append(book);
 
     const pageFlip = new PageFlip(book, {
-        width: 400, // required parameter - base page width
-        height: 800,  // required parameter - base page height
+        width: 450, // required parameter - base page width
+        height: 900,  // required parameter - base page height
         showCover: true,
         drawShadow: false
     });
     pageFlip.loadFromHTML(document.querySelectorAll('.my-page'));
+
+    menu(root);
 }
 
 export function destroyBook() {

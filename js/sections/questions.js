@@ -422,7 +422,7 @@ export function initQuestions() {
     answer5_4Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
     const answer5_4 = document.createElement('div');
     answer5_4.classList.add("btnText2");
-    answer5_4.textContent = 'The last part, about the music';
+    answer5_4.textContent = 'The last part, about the singing';
     hoverAction(answer5_4ClickDiv, answer5_4Btn);
     answer5_4ClickDiv.addEventListener('click', () => nextQuestion());
     answer5_4Div.append(answer5_4Btn, answer5_4, answer5_4ClickDiv);

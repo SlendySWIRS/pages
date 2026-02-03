@@ -31,16 +31,16 @@ export function loadSection(name) {
 
 function resetAll() {
     localStorage.clear();
-    loadSection('book');
+    loadSection('welcome');
 }
 
 window.addEventListener("load", () => {
-    const saved = localStorage.getItem('currentSection') || 'book';
+    const saved = localStorage.getItem('currentSection') || 'welcome';
     if (saved in sections) {
         loadSection(saved);
     } else {
-        loadSection('book');
+        loadSection('welcome');
     }
 });
 
-resetAll();  // temporary
+// resetAll();  // temporary

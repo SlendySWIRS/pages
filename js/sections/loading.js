@@ -1,4 +1,5 @@
 // js/sections/loading.js
+import { loadSection } from '../main.js'
 import { menu } from '../utils.js'
 import { saveHearts, showHeartBox } from '../heartutils.js'
 
@@ -35,7 +36,7 @@ export function initLoading() {
     mask.classList.add('barFillMask', 'noselect');
     const fill = document.createElement("img");
     fill.classList.add('barFill', 'noselect');
-    fill.setAttribute('src', "./assets/images/loading/progress.png");
+    fill.setAttribute('src', "./assets/images/loading/progress1.jpg");
     mask.append(fill);
     container.append(bar, mask, border);
 
@@ -52,7 +53,7 @@ export function initLoading() {
     mask2.classList.add('barFillMask', 'noselect');
     const fill2 = document.createElement("img");
     fill2.classList.add('barFill', 'noselect');
-    fill2.setAttribute('src', "./assets/images/loading/progress.png");
+    fill2.setAttribute('src', "./assets/images/loading/progress2.jpg");
     mask2.append(fill2);
     const bar2Handle = document.createElement("div");
     bar2Handle.classList.add('bar2Handle', 'noselect');
@@ -71,7 +72,7 @@ export function initLoading() {
     mask3.classList.add('barFillMask', 'noselect');
     const fill3 = document.createElement("img");
     fill3.classList.add('barFill', 'noselect');
-    fill3.setAttribute('src', "./assets/images/loading/progress.png");
+    fill3.setAttribute('src', "./assets/images/loading/progress3.jpg");
     mask3.append(fill3);
     const bar3Handle = document.createElement("div");
     bar3Handle.classList.add('bar2Handle', 'noselect');

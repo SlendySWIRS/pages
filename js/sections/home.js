@@ -124,12 +124,31 @@ export function initHome() {
     /* ---------- Third block ---------- */
 
     const bookDiv = document.createElement('div');
-    
+    bookDiv.classList.add("center");
+    bookDiv.style.overflow = 'hidden';
+    const book = document.createElement('img');
+    book.setAttribute('src', './assets/svgs/heart_book.svg');
+    book.style.width = '60vw';
+    book.style.marginTop = '25vh';
+    clickableA(book, "book");
+    book.addEventListener('mouseenter', () => {
+        book.style.marginTop = '15vh';
+    });
+    book.addEventListener('mouseleave', () => {
+        book.style.marginTop = '25vh';
+    });
+    bookDiv.append(book);
 
     /* ---------- Assemble section ---------- */
 
     root.append(introDiv, mainDiv);
+    if (hearts >= 10) {
+        root.append(bookDiv);
+        root.style.overflow = 'hidden';
+    }
     app.appendChild(root);
+    app.style.overflow = 'hidden';
+    app.style.height = '100vh';
 
     /* ---------- Optional: event listeners ---------- */
 
