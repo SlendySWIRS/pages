@@ -1,5 +1,6 @@
 // js/sections/welcome.js
-import { clickableA } from '../utils.js'
+import { clickableA, menu, showHana, showRandomHana } from '../utils.js'
+import { hearts } from '../heartutils.js'
 
 let root;
 
@@ -8,7 +9,7 @@ export function initWelcome() {
 
     // Root container for this section
     root = document.createElement('section');
-    root.id = 'welcome';
+    root.id = 'root';
 
     /* ---------- First block ---------- */
 
@@ -31,7 +32,7 @@ export function initWelcome() {
     p3.style.width = '60%';
     p3.classList.add('center', 'noMargin');
     p3.style.textAlign = "center";
-    p3.textContent = 'How to do this? Through a few small puzzle-like games, focussed on you and your persona (HanaMii)!';
+    p3.textContent = 'How to do this? Through a few small puzzle-like games, focused on you and your persona (HanaMii)!';
 
     const p4 = document.createElement('p');
     p4.classList.add('center', 'noMarginTop');
@@ -124,11 +125,14 @@ export function initWelcome() {
     /* ---------- Assemble section ---------- */
 
     root.append(introDiv, mainDiv);
+    const welcomeHanaImg = document.createElement('img');
+    welcomeHanaImg.setAttribute('src', './assets/images/frame_Hana.png')
+    welcomeHanaImg.classList.add("welcomeHanaLeft");
+    root.append(welcomeHanaImg);
     app.appendChild(root);
-
-    /* ---------- Optional: event listeners ---------- */
-
-    // Snap.svg can safely attach to #snappy here
+    if (hearts > 0) {
+        menu();
+    }
 }
 
 export function destroyWelcome() {

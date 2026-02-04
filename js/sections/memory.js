@@ -1,6 +1,6 @@
 // js/sections/memory.js
 import { loadSection } from '../main.js'
-import { menu } from '../utils.js'
+import { menu, info } from '../utils.js'
 import { showHeartBox, saveHearts } from '../heartutils.js'
 
 let root;
@@ -10,12 +10,14 @@ var revealedPairs = 0;
 export function initMemory() {
     console.log("MEMORY");
     root = document.createElement('section');
-    root.id = 'memory';
+    root.id = 'root';
     root.classList.add('center')
     localHearts = localStorage.getItem('memoryHearts') || 0;
 
     /* ---------- First block ---------- */
 
+    const title = document.createElement('h3');
+    title.textContent = 'Memory Cards';
     const memoryDiv = document.createElement('div');
     memoryDiv.classList.add('memory-game');
     const vals = ["Bonk", "Confused", "Cookie", "Cute", "Drink", "Love", "Mad", "Naughty", "Pat", "Record", "Uno", "UwU"]
@@ -35,10 +37,11 @@ export function initMemory() {
         }
     })
 
-    root.append(memoryDiv);
-    menu(root);
-    showHeartBox(root, 'memory');
+    root.append(title, memoryDiv);
     document.querySelector('#app').appendChild(root);
+    showHeartBox('memory');
+    menu();
+    info('memory');
 
     const cards = document.querySelectorAll('.memory-card');
 
@@ -77,15 +80,15 @@ export function initMemory() {
             localHearts = Math.max(localHearts, 1);
             console.log("localHearts: " + localHearts);
             saveHearts();
-            showHeartBox(root, 'memory');
+            showHeartBox('memory');
         } else if (revealedPairs == 8) {
             localHearts = Math.max(localHearts, 2);
             saveHearts();
-            showHeartBox(root, 'memory');
+            showHeartBox('memory');
         } else if (revealedPairs == 12) {
             localHearts = Math.max(localHearts, 3);
             saveHearts();
-            showHeartBox(root, 'memory');
+            showHeartBox('memory');
             setTimeout(() => { loadSection('home'); }, 200);
         }
 
@@ -140,8 +143,4 @@ export function destroyMemory() {
 export function getHeartsMemory() {
     let hearts = localHearts > 0 ? localHearts : localStorage.getItem('memoryHearts');
     return hearts || 0;
-}
-
-export function resetHeartsMemory() {
-    localHearts = 0;
 }

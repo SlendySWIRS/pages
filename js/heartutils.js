@@ -45,7 +45,7 @@ function createSvgInstance(url, container) {
     return s;
 }
 
-export function showHeartBox(section, name) {
+export function showHeartBox(name) {
     heartBox?.remove();
     heartBox = document.createElement('div');
     heartBox.classList.add('heartBox');
@@ -78,7 +78,7 @@ export function showHeartBox(section, name) {
     line.style.borderColor = 'black';
     line.style.borderWidth = '2px';
     heartBox.append(line);
-    section.append(heartBox);
+    document.querySelector('#root').append(heartBox);
 }
 
 export function showLocalHearts(section, name) {

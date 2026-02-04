@@ -1,7 +1,6 @@
 .slidingRoot {
-  height: 85vh;
+  height: 75vh;
   padding: 0;
-  margin: 5vh;
   display: grid;
   align-content: center;
   justify-content: center;

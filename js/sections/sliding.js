@@ -1,6 +1,6 @@
 // js/sections/sliding.js
 import { loadSection } from '../main.js'
-import { menu } from '../utils.js'
+import { menu, info } from '../utils.js'
 import { showHeartBox, saveHearts } from '../heartutils.js'
 
 let root;
@@ -12,7 +12,7 @@ export function initSliding() {
 
     // Root container for this section
     root = document.createElement('section');
-    root.id = 'sliding';
+    root.id = 'root';
     root.classList.add('center')
     localHearts = localStorage.getItem('slidingHearts') || 0;
     puzzleIndex = localStorage.getItem('puzzleIndex') || 0;
@@ -46,13 +46,16 @@ export function initSliding() {
     var freeslot = [], size = [], m = [], o, f;
 
     /* ---------- Assemble section ---------- */
+    const title = document.createElement('h3');
+    title.textContent = 'Sliding puzzles';
     const fDiv = document.createElement('div');
     fDiv.classList.add("slidingRoot");
-    root.append(fDiv);
+    root.append(title, fDiv);
     app.appendChild(root);
     create_slots(urls[(puzzleIndex) % 3]);
-    menu(root);
-    showHeartBox(root, 'sliding');
+    showHeartBox('sliding');
+    menu();
+    info('sliding');
 
     function create_slots(url) {
         f?.remove();
@@ -144,7 +147,7 @@ export function initSliding() {
                 localStorage.setItem('puzzleIndex', Number(puzzleIndex));
                 saveHearts();
                 if (localHearts < 3) {
-                    showHeartBox(root, 'sliding');
+                    showHeartBox('sliding');
                     setTimeout(() => { create_slots(urls[(puzzleIndex) % 3]); }, ((p.time) ? p.time * 1200 : 0));
 
                 } else {
@@ -202,8 +205,4 @@ export function destroySliding() {
 export function getHeartsSliding() {
     let hearts = localHearts > 0 ? localHearts : localStorage.getItem('slidingHearts');
     return hearts || 0;
-}
-
-export function resetHeartsSliding() {
-    localHearts = 0;
 }

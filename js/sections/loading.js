@@ -1,6 +1,6 @@
 // js/sections/loading.js
 import { loadSection } from '../main.js'
-import { menu } from '../utils.js'
+import { menu, info, clickable } from '../utils.js'
 import { saveHearts, showHeartBox } from '../heartutils.js'
 
 let root;
@@ -13,12 +13,15 @@ let autoupdate3FrameId = null;
 export function initLoading() {
     console.log("LOADING");
     root = document.createElement('section');
-    root.id = 'loading';
+    root.id = 'root';
     root.classList.add('center')
     localHearts = localStorage.getItem('loadingHearts') || 0;
 
+    const title = document.createElement('h3');
+    title.textContent = 'Loading Bar 19';
+
     const loadingDiv = document.createElement("div");
-    loadingDiv.style.height = '80vh';
+    loadingDiv.style.height = '60vh';
     loadingDiv.style.display = 'grid';
     loadingDiv.style.justifyContent = 'center';
     loadingDiv.style.alignItems = 'center';
@@ -39,6 +42,7 @@ export function initLoading() {
     fill.setAttribute('src', "./assets/images/loading/progress1.jpg");
     mask.append(fill);
     container.append(bar, mask, border);
+    clickable(container);
 
     // BAR 2
     const container2 = document.createElement("div");
@@ -82,11 +86,11 @@ export function initLoading() {
 
     // ASSEMBLE
     loadingDiv.append(container, container2, container3);
-    root.append(loadingDiv);
-    menu(root);
-    showHeartBox(root, 'loading');
+    root.append(title, loadingDiv);
     document.querySelector('#app').appendChild(root);
-
+    showHeartBox('loading');
+    menu();
+    info('loading');
 
     const TARGET = 60;
     const BOOST = 5;
@@ -136,7 +140,7 @@ export function initLoading() {
                 localStorage.setItem('bar1FinishDone', true);
                 localHearts++;
                 saveHearts();
-                showHeartBox(root, 'loading');
+                showHeartBox('loading');
             }
         }
         render();
@@ -169,7 +173,7 @@ export function initLoading() {
                 localStorage.setItem('bar2FinishDone', true);
                 localHearts++;
                 saveHearts();
-                showHeartBox(root, 'loading');
+                showHeartBox('loading');
                 if (localHearts == 3) {
                     setTimeout(() => { loadSection('home'); }, 200);
                 }
@@ -230,7 +234,7 @@ export function initLoading() {
                 localStorage.setItem('bar3FinishDone', true);
                 localHearts++;
                 saveHearts();
-                showHeartBox(root, 'loading');
+                showHeartBox('loading');
                 if (localHearts == 3) {
                     setTimeout(() => { loadSection('home'); }, 200);
                 }
@@ -296,8 +300,4 @@ export function destroyLoading() {
 export function getHeartsLoading() {
     let hearts = localHearts > 0 ? localHearts : localStorage.getItem('loadingHearts');
     return hearts || 0;
-}
-
-export function resetHeartsLoading() {
-    localHearts = 0;
 }

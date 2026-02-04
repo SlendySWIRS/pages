@@ -8,7 +8,7 @@ let root;
 export function initBook() {
     // console.log("BOOK");
     root = document.createElement('section');
-    root.id = 'book';
+    root.id = 'root';
     root.classList.add('center');
     document.querySelector('#app').appendChild(root);
 
@@ -156,7 +156,7 @@ export function initBook() {
     });
     pageFlip.loadFromHTML(document.querySelectorAll('.my-page'));
 
-    menu(root);
+    menu();
 }
 
 export function destroyBook() {

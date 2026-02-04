@@ -7,6 +7,7 @@ import { initSliding, destroySliding } from './sections/sliding.js';
 import { initMemory, destroyMemory } from './sections/memory.js';
 import { initLoading, destroyLoading } from './sections/loading.js';
 import { initBook, destroyBook } from './sections/book.js';
+import { showRandomHana } from './utils.js';
 
 const sections = {
     welcome: { init: initWelcome, destroy: destroyWelcome },
@@ -25,6 +26,9 @@ export function loadSection(name) {
         sections[window.currentSection].destroy();
     }
     sections[name].init();
+    if (name != 'book') {
+        showRandomHana();
+    }
     window.currentSection = name;
     localStorage.setItem('currentSection', window.currentSection);
 }
@@ -43,4 +47,5 @@ window.addEventListener("load", () => {
     }
 });
 
+loadSection('welcome');
 // resetAll();  // temporary

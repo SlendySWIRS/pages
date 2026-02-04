@@ -51,8 +51,7 @@
   color: hotpink;
 }
 
-body,
-#root {
+body {
   cursor: url('https://cdn.custom-cursor.com/db/5358/32/legend-of-zelda-link-master-sword-cursor-b.png'), auto;
   font-family: "CuteFont";
   font-size: xx-large;
@@ -60,6 +59,7 @@ body,
   margin: 0;
   width: 100%;
   height: 100vh;
+  overflow: hidden;
 }
 
 #snappy {
@@ -96,6 +96,32 @@ body,
   left: 5px;
 }
 
+.infoBtn {
+  height: 8vh;
+  position: absolute;
+  top: 5px;
+  left: calc(30px + 10vh);
+}
+
+.infoLabel {
+  height: 4vh;
+  position: absolute;
+  top: calc(6px + 8vh);
+  left: calc(30px + 14vh);
+  transform: translateX(-50%);
+  font-size: 50%;
+}
+
+.infoText {
+  width: 22vw;
+  height: fit-content;
+  position: absolute;
+  top: 5px;
+  margin: 0;
+  left: calc(40px + 18vh);
+  background-color: #c2b2f0;
+}
+
 .heartBox {
   height: 6vh;
   width: 36vw;
@@ -130,4 +156,46 @@ body,
   padding-right: 2px;
   grid-template-columns: repeat(3, 1fr);
   gap: 2px;
+}
+
+.frameTopRight {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.frameBottomRight {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.frameLeft {
+  position: absolute;
+  top: 20%;
+  left: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.welcomeHanaLeft {
+  position: absolute;
+  bottom: 0;
+  left: 15%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.hana {
+  position: absolute;
+  bottom: 0;
+  right: 12%;
+  transform: translateX(50%);
+  z-index: -1;
+  height: 50%;
+  overflow: hidden;
 }

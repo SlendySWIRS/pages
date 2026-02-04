@@ -5,7 +5,7 @@ let root;
 export function initHearts() {
     console.log("HEARTS");
     root = document.createElement('section');
-    root.id = 'hearts';
+    root.id = 'root';
     document.querySelector('#app').appendChild(root);
 
     // create SVG, animations, listeners here

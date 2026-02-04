@@ -9,7 +9,7 @@ export function initHome() {
 
     // Root container for this section
     root = document.createElement('section');
-    root.id = 'home';
+    root.id = 'root';
 
     /* ---------- First block ---------- */
 
@@ -139,12 +139,17 @@ export function initHome() {
     });
     bookDiv.append(book);
 
+    const welcomeHanaImg = document.createElement('img');
+    welcomeHanaImg.setAttribute('src', './assets/images/frame_Hana.png')
+    welcomeHanaImg.classList.add("welcomeHanaLeft");
+
     /* ---------- Assemble section ---------- */
 
     root.append(introDiv, mainDiv);
     if (hearts >= 10) {
         root.append(bookDiv);
-        root.style.overflow = 'hidden';
+    } else {
+        root.append(welcomeHanaImg);
     }
     app.appendChild(root);
     app.style.overflow = 'hidden';

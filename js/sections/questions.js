@@ -1,6 +1,6 @@
 // js/sections/questions.js
 import { loadSection } from '../main.js'
-import { clickable, menu } from '../utils.js'
+import { clickable, menu, info } from '../utils.js'
 import { showHeartBox, saveHearts } from '../heartutils.js'
 
 let root;
@@ -12,7 +12,7 @@ failMsgs.push("Nope, not this one", "Try again", "There should be a better respo
 export function initQuestions() {
     console.log("QUESTIONS");
     root = document.createElement('section');
-    root.id = 'questions';
+    root.id = 'root';
     root.classList.add('center')
     localHearts = localStorage.getItem('questionsHearts') || 0;
 
@@ -520,9 +520,10 @@ export function initQuestions() {
     questionDiv.append(question1Div);
 
     root.append(questionDiv);
-    menu(root);
-    showHeartBox(root, 'questions');
     document.querySelector('#app').appendChild(root);
+    showHeartBox('questions');
+    menu();
+    info('questions');
 
     function tryAgain(clickElement, buttonElement, textElement) {
         let oldText = textElement.textContent;
@@ -549,7 +550,7 @@ export function initQuestions() {
                     questionDiv.replaceChild(question3Div, question2Div);
                     localHearts = Math.max(localHearts, 1);
                     saveHearts();
-                    showHeartBox(root, 'questions');
+                    showHeartBox('questions');
                     break;
                 case 3:
                     questionDiv.replaceChild(question4Div, question3Div);
@@ -558,7 +559,7 @@ export function initQuestions() {
                     questionDiv.replaceChild(question5Div, question4Div);
                     localHearts = Math.max(localHearts, 2);
                     saveHearts();
-                    showHeartBox(root, 'questions');
+                    showHeartBox('questions');
                     break;
                 case 5:
                     questionDiv.replaceChild(question6Div, question5Div);
@@ -566,7 +567,7 @@ export function initQuestions() {
                 default:
                     localHearts = Math.max(localHearts, 3);
                     saveHearts();
-                    showHeartBox(root, 'questions');
+                    showHeartBox('questions');
                     setTimeout(() => { loadSection('home'); }, 200);
                     break;
             }
@@ -592,8 +593,4 @@ export function destroyQuestions() {
 export function getHeartsQuestions() {
     let hearts = localHearts > 0 ? localHearts : localStorage.getItem('questionsHearts');
     return hearts || 0;
-}
-
-export function resetHeartsQuestions() {
-    localHearts = 0;
 }

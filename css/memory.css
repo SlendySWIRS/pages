@@ -1,8 +1,7 @@
 .memory-game {
-  width: min(60vw, calc(3*80vh/2));
-  height: min(80vh, calc(2*60vw/3));
+  width: min(60vw, calc(3*75vh/2));
+  height: min(75vh, calc(2*60vw/3));
   margin: auto;
-  margin-top: 5vh;
   justify-content: center;
   align-items: center;
   display: flex;
