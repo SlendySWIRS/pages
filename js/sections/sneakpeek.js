@@ -16,7 +16,7 @@ export function initHearts() {
     const vbWidth = 100;
     const vbHeight = 100;
 
-    
+
     const scaleX = vbWidth / canvasWidth;
     const scaleY = vbHeight / canvasHeight;
 
