@@ -55,14 +55,14 @@ export function showHeartBox(name) {
     while (i < local) {
         var heart = document.createElement('div');
         heart.style.display = 'grid';
-        createSvgInstance('./assets/svgs/heart.svg', heart);
+        createSvgInstance('assets/svgs/heart.svg', heart);
         heartBox.append(heart);
         i++;
     }
     while (i < hearts) {
         var heart = document.createElement('div');
         heart.style.display = 'grid';
-        createSvgInstance('./assets/svgs/heart.svg', heart);
+        createSvgInstance('assets/svgs/heart.svg', heart);
         heart.style.opacity = '30%';
         heartBox.append(heart);
         i++;
@@ -88,7 +88,7 @@ export function showLocalHearts(section, name) {
     while (i < local) {
         var heart = document.createElement('div');
         heart.style.display = 'grid';
-        createSvgInstance('./assets/svgs/heart.svg', heart);
+        createSvgInstance('assets/svgs/heart.svg', heart);
         localHearts.append(heart);
         i++;
     }
