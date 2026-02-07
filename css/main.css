@@ -119,7 +119,7 @@ body {
   top: 5px;
   margin: 0;
   left: calc(40px + 18vh);
-  background-color: #c2b2f0;
+  background-color: rgba(194, 178, 240, 0.6);
 }
 
 .heartBox {

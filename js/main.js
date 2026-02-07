@@ -45,5 +45,5 @@ window.addEventListener("load", () => {
     }
 });
 
-loadSection('welcome');
+// loadSection('welcome');
 // resetAll();  // temporary
