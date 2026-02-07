@@ -1,13 +1,12 @@
 // js/sections/book.js
 
 import { PageFlip } from '../lib/page-flip.module.js';
-import { clickable, menu } from '../utils.js'
+import { clickable, menu, showHana } from '../utils.js'
 
 let root;
 
 export function initBook() {
-    // console.log("BOOK");
-    root = document.createElement('section');
+    // root = document.createElement('section');
     root.id = 'root';
     root.classList.add('center');
     document.querySelector('#app').appendChild(root);
@@ -148,6 +147,11 @@ export function initBook() {
         page14, page15, page16, page17, page18, page19, page20, page21, page22, page23, page24, page25, page26);
     root.append(book);
 
+
+    var audio = new Audio('./assets/audio/song.mp3');
+    root.append(audio);
+    audio.play();
+
     const pageFlip = new PageFlip(book, {
         width: 450, // required parameter - base page width
         height: 900,  // required parameter - base page height
@@ -157,6 +161,8 @@ export function initBook() {
     pageFlip.loadFromHTML(document.querySelectorAll('.my-page'));
 
     menu();
+    showHana('frame');
+    showHana('teddy');
 }
 
 export function destroyBook() {

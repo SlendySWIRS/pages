@@ -1,6 +1,6 @@
 // js/sections/questions.js
 import { loadSection } from '../main.js'
-import { clickable, menu, info } from '../utils.js'
+import { clickable, menu, info, showHana } from '../utils.js'
 import { showHeartBox, saveHearts } from '../heartutils.js'
 
 let root;
@@ -10,13 +10,10 @@ const failMsgs = [];
 failMsgs.push("Nope, not this one", "Try again", "There should be a better response", "Are you sure?");
 
 export function initQuestions() {
-    console.log("QUESTIONS");
     root = document.createElement('section');
     root.id = 'root';
     root.classList.add('center')
     localHearts = localStorage.getItem('questionsHearts') || 0;
-
-    /* ---------- First block ---------- */
 
     const questionDiv = document.createElement('div');
     questionDiv.classList.add('center');
@@ -41,16 +38,14 @@ export function initQuestions() {
     question6Div.classList.add('center');
 
     const title1 = document.createElement('h3');
+    title1.classList.add('title');
     title1.textContent = 'Question 1: What is your favorite pizza flavour?';
 
     const answer1_1Div = document.createElement('div');
     answer1_1Div.style.position = 'relative';
     answer1_1Div.style.width = 'fit-content';
     const answer1_1ClickDiv = document.createElement('div');
-    answer1_1ClickDiv.style.position = 'absolute';
-    answer1_1ClickDiv.style.width = '100%';
-    answer1_1ClickDiv.style.top = '23%';
-    answer1_1ClickDiv.style.height = '70%';
+    answer1_1ClickDiv.classList.add('qClickDiv');
     const answer1_1Btn = document.createElement('img');
     answer1_1Btn.style.width = '384px';
     answer1_1Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
@@ -65,10 +60,7 @@ export function initQuestions() {
     answer1_2Div.style.position = 'relative';
     answer1_2Div.style.width = 'fit-content';
     const answer1_2ClickDiv = document.createElement('div');
-    answer1_2ClickDiv.style.position = 'absolute';
-    answer1_2ClickDiv.style.width = '100%';
-    answer1_2ClickDiv.style.top = '23%';
-    answer1_2ClickDiv.style.height = '70%';
+    answer1_2ClickDiv.classList.add('qClickDiv');
     const answer1_2Btn = document.createElement('img');
     answer1_2Btn.style.width = '384px';
     answer1_2Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
@@ -83,10 +75,7 @@ export function initQuestions() {
     answer1_3Div.style.position = 'relative';
     answer1_3Div.style.width = 'fit-content';
     const answer1_3ClickDiv = document.createElement('div');
-    answer1_3ClickDiv.style.position = 'absolute';
-    answer1_3ClickDiv.style.width = '100%';
-    answer1_3ClickDiv.style.top = '23%';
-    answer1_3ClickDiv.style.height = '70%';
+    answer1_3ClickDiv.classList.add('qClickDiv');
     const answer1_3Btn = document.createElement('img');
     answer1_3Btn.style.width = '384px';
     answer1_3Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
@@ -101,10 +90,7 @@ export function initQuestions() {
     answer1_4Div.style.position = 'relative';
     answer1_4Div.style.width = 'fit-content';
     const answer1_4ClickDiv = document.createElement('div');
-    answer1_4ClickDiv.style.position = 'absolute';
-    answer1_4ClickDiv.style.width = '100%';
-    answer1_4ClickDiv.style.top = '23%';
-    answer1_4ClickDiv.style.height = '70%';
+    answer1_4ClickDiv.classList.add('qClickDiv');
     const answer1_4Btn = document.createElement('img');
     answer1_4Btn.style.width = '384px';
     answer1_4Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
@@ -115,20 +101,21 @@ export function initQuestions() {
     tryAgain(answer1_4ClickDiv, answer1_4Btn, answer1_4);
     answer1_4Div.append(answer1_4Btn, answer1_4, answer1_4ClickDiv);
 
-    question1Div.append(title1, answer1_1Div, answer1_2Div, answer1_3Div, answer1_4Div);
+    const response1Div = document.createElement('div');
+    response1Div.classList.add('qDiv');
+    response1Div.append(answer1_1Div, answer1_2Div, answer1_3Div, answer1_4Div);
+    question1Div.append(title1, response1Div);
 
 
     const title2 = document.createElement('h3');
+    title2.classList.add('title');
     title2.textContent = 'Question 2: What is the worst crime (according to you)?';
 
     const answer2_1Div = document.createElement('div');
     answer2_1Div.style.position = 'relative';
     answer2_1Div.style.width = 'fit-content';
     const answer2_1ClickDiv = document.createElement('div');
-    answer2_1ClickDiv.style.position = 'absolute';
-    answer2_1ClickDiv.style.width = '100%';
-    answer2_1ClickDiv.style.top = '23%';
-    answer2_1ClickDiv.style.height = '70%';
+    answer2_1ClickDiv.classList.add('qClickDiv');
     const answer2_1Btn = document.createElement('img');
     answer2_1Btn.style.width = '384px';
     answer2_1Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
@@ -143,10 +130,7 @@ export function initQuestions() {
     answer2_2Div.style.position = 'relative';
     answer2_2Div.style.width = 'fit-content';
     const answer2_2ClickDiv = document.createElement('div');
-    answer2_2ClickDiv.style.position = 'absolute';
-    answer2_2ClickDiv.style.width = '100%';
-    answer2_2ClickDiv.style.top = '23%';
-    answer2_2ClickDiv.style.height = '70%';
+    answer2_2ClickDiv.classList.add('qClickDiv');
     const answer2_2Btn = document.createElement('img');
     answer2_2Btn.style.width = '384px';
     answer2_2Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
@@ -161,10 +145,7 @@ export function initQuestions() {
     answer2_3Div.style.position = 'relative';
     answer2_3Div.style.width = 'fit-content';
     const answer2_3ClickDiv = document.createElement('div');
-    answer2_3ClickDiv.style.position = 'absolute';
-    answer2_3ClickDiv.style.width = '100%';
-    answer2_3ClickDiv.style.top = '23%';
-    answer2_3ClickDiv.style.height = '70%';
+    answer2_3ClickDiv.classList.add('qClickDiv');
     const answer2_3Btn = document.createElement('img');
     answer2_3Btn.style.width = '384px';
     answer2_3Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
@@ -179,10 +160,7 @@ export function initQuestions() {
     answer2_4Div.style.position = 'relative';
     answer2_4Div.style.width = 'fit-content';
     const answer2_4ClickDiv = document.createElement('div');
-    answer2_4ClickDiv.style.position = 'absolute';
-    answer2_4ClickDiv.style.width = '100%';
-    answer2_4ClickDiv.style.top = '23%';
-    answer2_4ClickDiv.style.height = '70%';
+    answer2_4ClickDiv.classList.add('qClickDiv');
     const answer2_4Btn = document.createElement('img');
     answer2_4Btn.style.width = '384px';
     answer2_4Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
@@ -197,10 +175,7 @@ export function initQuestions() {
     answer2_5Div.style.position = 'relative';
     answer2_5Div.style.width = 'fit-content';
     const answer2_5ClickDiv = document.createElement('div');
-    answer2_5ClickDiv.style.position = 'absolute';
-    answer2_5ClickDiv.style.width = '100%';
-    answer2_5ClickDiv.style.top = '23%';
-    answer2_5ClickDiv.style.height = '70%';
+    answer2_5ClickDiv.classList.add('qClickDiv');
     const answer2_5Btn = document.createElement('img');
     answer2_5Btn.style.width = '384px';
     answer2_5Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
@@ -211,20 +186,22 @@ export function initQuestions() {
     answer2_5ClickDiv.addEventListener('click', () => nextQuestion());
     answer2_5Div.append(answer2_5Btn, answer2_5, answer2_5ClickDiv);
 
-    question2Div.append(title2, answer2_1Div, answer2_2Div, answer2_3Div, answer2_4Div, answer2_5Div);
+    const response2Div = document.createElement('div');
+    response2Div.classList.add('qDiv');
+
+    response2Div.append(answer2_1Div, answer2_2Div, answer2_3Div, answer2_4Div, answer2_5Div);
+    question2Div.append(title2, response2Div);
 
 
     const title3 = document.createElement('h3');
+    title3.classList.add('title');
     title3.textContent = 'Question 3: Have you ever participated in any sports, and if so: which?';
 
     const answer3_1Div = document.createElement('div');
     answer3_1Div.style.position = 'relative';
     answer3_1Div.style.width = 'fit-content';
     const answer3_1ClickDiv = document.createElement('div');
-    answer3_1ClickDiv.style.position = 'absolute';
-    answer3_1ClickDiv.style.width = '100%';
-    answer3_1ClickDiv.style.top = '23%';
-    answer3_1ClickDiv.style.height = '70%';
+    answer3_1ClickDiv.classList.add('qClickDiv');
     const answer3_1Btn = document.createElement('img');
     answer3_1Btn.style.width = '384px';
     answer3_1Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
@@ -239,10 +216,7 @@ export function initQuestions() {
     answer3_2Div.style.position = 'relative';
     answer3_2Div.style.width = 'fit-content';
     const answer3_2ClickDiv = document.createElement('div');
-    answer3_2ClickDiv.style.position = 'absolute';
-    answer3_2ClickDiv.style.width = '100%';
-    answer3_2ClickDiv.style.top = '23%';
-    answer3_2ClickDiv.style.height = '70%';
+    answer3_2ClickDiv.classList.add('qClickDiv');
     const answer3_2Btn = document.createElement('img');
     answer3_2Btn.style.width = '384px';
     answer3_2Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
@@ -257,10 +231,7 @@ export function initQuestions() {
     answer3_3Div.style.position = 'relative';
     answer3_3Div.style.width = 'fit-content';
     const answer3_3ClickDiv = document.createElement('div');
-    answer3_3ClickDiv.style.position = 'absolute';
-    answer3_3ClickDiv.style.width = '100%';
-    answer3_3ClickDiv.style.top = '23%';
-    answer3_3ClickDiv.style.height = '70%';
+    answer3_3ClickDiv.classList.add('qClickDiv');
     const answer3_3Btn = document.createElement('img');
     answer3_3Btn.style.width = '384px';
     answer3_3Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
@@ -275,10 +246,7 @@ export function initQuestions() {
     answer3_4Div.style.position = 'relative';
     answer3_4Div.style.width = 'fit-content';
     const answer3_4ClickDiv = document.createElement('div');
-    answer3_4ClickDiv.style.position = 'absolute';
-    answer3_4ClickDiv.style.width = '100%';
-    answer3_4ClickDiv.style.top = '23%';
-    answer3_4ClickDiv.style.height = '70%';
+    answer3_4ClickDiv.classList.add('qClickDiv');
     const answer3_4Btn = document.createElement('img');
     answer3_4Btn.style.width = '384px';
     answer3_4Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
@@ -289,20 +257,22 @@ export function initQuestions() {
     tryAgain(answer3_4ClickDiv, answer3_4Btn, answer3_4);
     answer3_4Div.append(answer3_4Btn, answer3_4, answer3_4ClickDiv);
 
-    question3Div.append(title3, answer3_1Div, answer3_2Div, answer3_3Div, answer3_4Div);
+    const response3Div = document.createElement('div');
+    response3Div.classList.add('qDiv');
+
+    response3Div.append(answer3_1Div, answer3_2Div, answer3_3Div, answer3_4Div);
+    question3Div.append(title3, response3Div);
 
 
     const title4 = document.createElement('h3');
+    title4.classList.add('title');
     title4.textContent = 'Question 4: When is your birthday?';
 
     const answer4_1Div = document.createElement('div');
     answer4_1Div.style.position = 'relative';
     answer4_1Div.style.width = 'fit-content';
     const answer4_1ClickDiv = document.createElement('div');
-    answer4_1ClickDiv.style.position = 'absolute';
-    answer4_1ClickDiv.style.width = '100%';
-    answer4_1ClickDiv.style.top = '23%';
-    answer4_1ClickDiv.style.height = '70%';
+    answer4_1ClickDiv.classList.add('qClickDiv');
     const answer4_1Btn = document.createElement('img');
     answer4_1Btn.style.width = '384px';
     answer4_1Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
@@ -317,10 +287,7 @@ export function initQuestions() {
     answer4_2Div.style.position = 'relative';
     answer4_2Div.style.width = 'fit-content';
     const answer4_2ClickDiv = document.createElement('div');
-    answer4_2ClickDiv.style.position = 'absolute';
-    answer4_2ClickDiv.style.width = '100%';
-    answer4_2ClickDiv.style.top = '23%';
-    answer4_2ClickDiv.style.height = '70%';
+    answer4_2ClickDiv.classList.add('qClickDiv');
     const answer4_2Btn = document.createElement('img');
     answer4_2Btn.style.width = '384px';
     answer4_2Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
@@ -335,10 +302,7 @@ export function initQuestions() {
     answer4_3Div.style.position = 'relative';
     answer4_3Div.style.width = 'fit-content';
     const answer4_3ClickDiv = document.createElement('div');
-    answer4_3ClickDiv.style.position = 'absolute';
-    answer4_3ClickDiv.style.width = '100%';
-    answer4_3ClickDiv.style.top = '23%';
-    answer4_3ClickDiv.style.height = '70%';
+    answer4_3ClickDiv.classList.add('qClickDiv');
     const answer4_3Btn = document.createElement('img');
     answer4_3Btn.style.width = '384px';
     answer4_3Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
@@ -349,20 +313,22 @@ export function initQuestions() {
     answer4_3ClickDiv.addEventListener('click', () => nextQuestion());
     answer4_3Div.append(answer4_3Btn, answer4_3, answer4_3ClickDiv);
 
-    question4Div.append(title4, answer4_1Div, answer4_2Div, answer4_3Div);
+    const response4Div = document.createElement('div');
+    response4Div.classList.add('qDiv');
+
+    response4Div.append(answer4_1Div, answer4_2Div, answer4_3Div);
+    question4Div.append(title4, response4Div);
 
 
     const title5 = document.createElement('h3');
+    title5.classList.add('title');
     title5.textContent = 'Question 5: What was your favorite part in "It takes two"?';
 
     const answer5_1Div = document.createElement('div');
     answer5_1Div.style.position = 'relative';
     answer5_1Div.style.width = 'fit-content';
     const answer5_1ClickDiv = document.createElement('div');
-    answer5_1ClickDiv.style.position = 'absolute';
-    answer5_1ClickDiv.style.width = '100%';
-    answer5_1ClickDiv.style.top = '23%';
-    answer5_1ClickDiv.style.height = '70%';
+    answer5_1ClickDiv.classList.add('qClickDiv');
     const answer5_1Btn = document.createElement('img');
     answer5_1Btn.style.width = '384px';
     answer5_1Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
@@ -377,10 +343,7 @@ export function initQuestions() {
     answer5_2Div.style.position = 'relative';
     answer5_2Div.style.width = 'fit-content';
     const answer5_2ClickDiv = document.createElement('div');
-    answer5_2ClickDiv.style.position = 'absolute';
-    answer5_2ClickDiv.style.width = '100%';
-    answer5_2ClickDiv.style.top = '23%';
-    answer5_2ClickDiv.style.height = '70%';
+    answer5_2ClickDiv.classList.add('qClickDiv');
     const answer5_2Btn = document.createElement('img');
     answer5_2Btn.style.width = '384px';
     answer5_2Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
@@ -395,10 +358,7 @@ export function initQuestions() {
     answer5_3Div.style.position = 'relative';
     answer5_3Div.style.width = 'fit-content';
     const answer5_3ClickDiv = document.createElement('div');
-    answer5_3ClickDiv.style.position = 'absolute';
-    answer5_3ClickDiv.style.width = '100%';
-    answer5_3ClickDiv.style.top = '23%';
-    answer5_3ClickDiv.style.height = '70%';
+    answer5_3ClickDiv.classList.add('qClickDiv');
     const answer5_3Btn = document.createElement('img');
     answer5_3Btn.style.width = '384px';
     answer5_3Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
@@ -413,10 +373,7 @@ export function initQuestions() {
     answer5_4Div.style.position = 'relative';
     answer5_4Div.style.width = 'fit-content';
     const answer5_4ClickDiv = document.createElement('div');
-    answer5_4ClickDiv.style.position = 'absolute';
-    answer5_4ClickDiv.style.width = '100%';
-    answer5_4ClickDiv.style.top = '23%';
-    answer5_4ClickDiv.style.height = '70%';
+    answer5_4ClickDiv.classList.add('qClickDiv');
     const answer5_4Btn = document.createElement('img');
     answer5_4Btn.style.width = '384px';
     answer5_4Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
@@ -431,10 +388,7 @@ export function initQuestions() {
     answer5_5Div.style.position = 'relative';
     answer5_5Div.style.width = 'fit-content';
     const answer5_5ClickDiv = document.createElement('div');
-    answer5_5ClickDiv.style.position = 'absolute';
-    answer5_5ClickDiv.style.width = '100%';
-    answer5_5ClickDiv.style.top = '23%';
-    answer5_5ClickDiv.style.height = '70%';
+    answer5_5ClickDiv.classList.add('qClickDiv');
     const answer5_5Btn = document.createElement('img');
     answer5_5Btn.style.width = '384px';
     answer5_5Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
@@ -445,20 +399,21 @@ export function initQuestions() {
     tryAgain(answer5_5ClickDiv, answer5_5Btn, answer5_5);
     answer5_5Div.append(answer5_5Btn, answer5_5, answer5_5ClickDiv);
 
-    question5Div.append(title5, answer5_1Div, answer5_2Div, answer5_3Div, answer5_4Div, answer5_5Div);
+    const response5Div = document.createElement('div');
+    response5Div.classList.add('qDiv');
+    response5Div.append(answer5_1Div, answer5_2Div, answer5_3Div, answer5_4Div, answer5_5Div);
+    question5Div.append(title5, response5Div);
 
 
     const title6 = document.createElement('h3');
+    title6.classList.add('title');
     title6.textContent = 'Question 6: Do you consider yourself the cutest person alive?';
 
     const answer6_1Div = document.createElement('div');
     answer6_1Div.style.position = 'relative';
     answer6_1Div.style.width = 'fit-content';
     const answer6_1ClickDiv = document.createElement('div');
-    answer6_1ClickDiv.style.position = 'absolute';
-    answer6_1ClickDiv.style.width = '100%';
-    answer6_1ClickDiv.style.top = '23%';
-    answer6_1ClickDiv.style.height = '70%';
+    answer6_1ClickDiv.classList.add('qClickDiv');
     const answer6_1Btn = document.createElement('img');
     answer6_1Btn.style.width = '384px';
     answer6_1Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
@@ -475,10 +430,7 @@ export function initQuestions() {
     answer6_2Div.style.position = 'relative';
     answer6_2Div.style.width = 'fit-content';
     const answer6_2ClickDiv = document.createElement('div');
-    answer6_2ClickDiv.style.position = 'absolute';
-    answer6_2ClickDiv.style.width = '100%';
-    answer6_2ClickDiv.style.top = '23%';
-    answer6_2ClickDiv.style.height = '70%';
+    answer6_2ClickDiv.classList.add('qClickDiv');
     const answer6_2Btn = document.createElement('img');
     answer6_2Btn.style.width = '384px';
     answer6_2Btn.setAttribute('src', './assets/svgs/cutebutton.svg');
@@ -514,7 +466,11 @@ export function initQuestions() {
         }
     });
 
-    question6Div.append(title6, answer6_1Div, answer6_2Div);
+    const response6Div = document.createElement('div');
+    response6Div.classList.add('qDiv');
+
+    response6Div.append(answer6_1Div, answer6_2Div);
+    question6Div.append(title6, response6Div);
 
 
     questionDiv.append(question1Div);
@@ -523,6 +479,7 @@ export function initQuestions() {
     document.querySelector('#app').appendChild(root);
     showHeartBox('questions');
     menu();
+    showHana('gamer');
     info('questions');
 
     function tryAgain(clickElement, buttonElement, textElement) {

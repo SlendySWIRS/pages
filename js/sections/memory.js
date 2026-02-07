@@ -1,6 +1,6 @@
 // js/sections/memory.js
 import { loadSection } from '../main.js'
-import { menu, info } from '../utils.js'
+import { menu, info, showHana } from '../utils.js'
 import { showHeartBox, saveHearts } from '../heartutils.js'
 
 let root;
@@ -8,7 +8,6 @@ var localHearts = 0;
 var revealedPairs = 0;
 
 export function initMemory() {
-    console.log("MEMORY");
     root = document.createElement('section');
     root.id = 'root';
     root.classList.add('center')
@@ -17,6 +16,7 @@ export function initMemory() {
     /* ---------- First block ---------- */
 
     const title = document.createElement('h3');
+    title.classList.add('title');
     title.textContent = 'Memory Cards';
     const memoryDiv = document.createElement('div');
     memoryDiv.classList.add('memory-game');
@@ -42,6 +42,7 @@ export function initMemory() {
     showHeartBox('memory');
     menu();
     info('memory');
+    showHana('gamer');
 
     const cards = document.querySelectorAll('.memory-card');
 
@@ -78,8 +79,7 @@ export function initMemory() {
         revealedPairs++;
         if (revealedPairs == 4) {
             localHearts = Math.max(localHearts, 1);
-            console.log("localHearts: " + localHearts);
-            saveHearts();
+                    saveHearts();
             showHeartBox('memory');
         } else if (revealedPairs == 8) {
             localHearts = Math.max(localHearts, 2);

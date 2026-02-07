@@ -1,6 +1,6 @@
 // js/sections/sliding.js
 import { loadSection } from '../main.js'
-import { menu, info } from '../utils.js'
+import { menu, info, showHana } from '../utils.js'
 import { showHeartBox, saveHearts } from '../heartutils.js'
 
 let root;
@@ -45,8 +45,8 @@ export function initSliding() {
     };
     var freeslot = [], size = [], m = [], o, f;
 
-    /* ---------- Assemble section ---------- */
-    const title = document.createElement('h3');
+        const title = document.createElement('h3');
+    title.classList.add('title');
     title.textContent = 'Sliding puzzles';
     const fDiv = document.createElement('div');
     fDiv.classList.add("slidingRoot");
@@ -56,6 +56,7 @@ export function initSliding() {
     showHeartBox('sliding');
     menu();
     info('sliding');
+    showHana('gamer');
 
     function create_slots(url) {
         f?.remove();

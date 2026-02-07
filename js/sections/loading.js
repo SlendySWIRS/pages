@@ -1,6 +1,6 @@
 // js/sections/loading.js
 import { loadSection } from '../main.js'
-import { menu, info, clickable } from '../utils.js'
+import { menu, info, clickable, showHana } from '../utils.js'
 import { saveHearts, showHeartBox } from '../heartutils.js'
 
 let root;
@@ -11,13 +11,13 @@ let autoupdate2FrameId = null;
 let autoupdate3FrameId = null;
 
 export function initLoading() {
-    console.log("LOADING");
     root = document.createElement('section');
     root.id = 'root';
     root.classList.add('center')
     localHearts = localStorage.getItem('loadingHearts') || 0;
 
     const title = document.createElement('h3');
+    title.classList.add('title');
     title.textContent = 'Loading Bar 19';
 
     const loadingDiv = document.createElement("div");
@@ -91,6 +91,7 @@ export function initLoading() {
     showHeartBox('loading');
     menu();
     info('loading');
+    showHana('gamer');
 
     const TARGET = 60;
     const BOOST = 5;
@@ -255,8 +256,7 @@ export function initLoading() {
         if (Math.abs(diff) > 0.05) {
             let change = Math.sign(diff) * speed;
             change = Math.max(-0.05, change);
-            console.log(change);
-            progress += Math.sign(diff) * speed;
+                    progress += Math.sign(diff) * speed;
             render();
         }
 

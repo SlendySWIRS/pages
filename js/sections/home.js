@@ -1,5 +1,5 @@
 // js/sections/home.js
-import { clickableA } from '../utils.js'
+import { clickableA, showHana } from '../utils.js'
 import { hearts, showLocalHearts } from '../heartutils.js'
 
 let root;
@@ -7,11 +7,8 @@ let root;
 export function initHome() {
     const app = document.querySelector('#app');
 
-    // Root container for this section
     root = document.createElement('section');
     root.id = 'root';
-
-    /* ---------- First block ---------- */
 
     const introDiv = document.createElement('div');
     introDiv.classList.add('center');
@@ -47,8 +44,6 @@ export function initHome() {
     p5.textContent = 'Click on one of the buttons to choose a game!';
 
     introDiv.append(title, p1, p2, p3, p4, p5);
-
-    /* ---------- Second block ---------- */
 
     const mainDiv = document.createElement('div');
     mainDiv.classList.add('center');
@@ -121,8 +116,6 @@ export function initHome() {
 
     mainDiv.append(colsDiv);
 
-    /* ---------- Third block ---------- */
-
     const bookDiv = document.createElement('div');
     bookDiv.classList.add("center");
     bookDiv.style.overflow = 'hidden';
@@ -139,25 +132,14 @@ export function initHome() {
     });
     bookDiv.append(book);
 
-    const welcomeHanaImg = document.createElement('img');
-    welcomeHanaImg.setAttribute('src', './assets/images/frame_Hana.png')
-    welcomeHanaImg.classList.add("welcomeHanaLeft");
-
-    /* ---------- Assemble section ---------- */
-
     root.append(introDiv, mainDiv);
+    app.appendChild(root);
     if (hearts >= 10) {
         root.append(bookDiv);
     } else {
-        root.append(welcomeHanaImg);
+        // showHana('frame');
+        showHana('japanese');
     }
-    app.appendChild(root);
-    app.style.overflow = 'hidden';
-    app.style.height = '100vh';
-
-    /* ---------- Optional: event listeners ---------- */
-
-    // Snap.svg can safely attach to #snappy here
 }
 
 export function destroyHome() {

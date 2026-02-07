@@ -56,8 +56,6 @@ export function menu() {
 
 export function info(section) {
     infoText.textContent = sectionInfo[section];
-    console.log(infoText.textContent);
-    console.log(sectionInfo[section]);
     document.querySelector('#root').append(infoBtn, infoLabel, infoText);
 }
 
@@ -70,13 +68,20 @@ export function hoverOutClickable() {
 }
 
 export function showHana(outfit) {
-    if (!outfits.includes(outfit)) {
-        outfit = 'sword';
+    if (outfit == "frame") {
+        const hanaImg = document.createElement('img');
+        hanaImg.setAttribute('src', './assets/images/frame_Hana.png')
+        hanaImg.classList.add("welcomeHanaLeft");
+        document.querySelector('#root').append(hanaImg);
+    } else {
+        if (!outfits.includes(outfit)) {
+            outfit = 'sword';
+        }
+        const hanaImg = document.createElement('img');
+        hanaImg.classList.add("hana");
+        hanaImg.setAttribute('src', `./assets/images/hana/outfit_${outfit}.png`);
+        document.querySelector('#root').append(hanaImg);
     }
-    const hanaImg = document.createElement('img');
-    hanaImg.classList.add("hana");
-    hanaImg.setAttribute('src', `./assets/images/hana/outfit_${outfit}.png`);
-    document.querySelector('#root').append(hanaImg);
 }
 
 export function showRandomHana() {

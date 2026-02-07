@@ -163,7 +163,6 @@ body {
   top: 0;
   right: 0;
   z-index: -1;
-  overflow: hidden;
 }
 
 .frameBottomRight {
@@ -171,7 +170,6 @@ body {
   bottom: 0;
   right: 0;
   z-index: -1;
-  overflow: hidden;
 }
 
 .frameLeft {
@@ -179,7 +177,6 @@ body {
   top: 20%;
   left: 0;
   z-index: -1;
-  overflow: hidden;
 }
 
 .welcomeHanaLeft {
@@ -187,7 +184,7 @@ body {
   bottom: 0;
   left: 15%;
   z-index: -1;
-  overflow: hidden;
+  height: 34%;
 }
 
 .hana {
@@ -197,5 +194,4 @@ body {
   transform: translateX(50%);
   z-index: -1;
   height: 50%;
-  overflow: hidden;
 }

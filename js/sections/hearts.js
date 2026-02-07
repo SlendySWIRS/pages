@@ -3,7 +3,6 @@
 let root;
 
 export function initHearts() {
-    console.log("HEARTS");
     root = document.createElement('section');
     root.id = 'root';
     document.querySelector('#app').appendChild(root);
@@ -13,9 +12,6 @@ export function initHearts() {
     // viewBox size
     const vbWidth = 100;
     const vbHeight = 100;
-
-    console.log("VBW: " + vbWidth);
-    console.log("VBH: " + vbHeight);
 
     const canvas = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     canvas.setAttribute('viewBox', '0 0 100 100');
@@ -71,11 +67,9 @@ export function initHearts() {
 
         // get viewBox attribute
         const vb = svgNode.getAttribute("viewBox"); // returns a string like "0 0 24 24"
-        console.log("heart viewBox:", vb);
 
         // parse numbers
         const [vbX, vbY, heartVbWidth, heartVbHeight] = vb.split(" ").map(Number);
-        console.log(vbX, vbY, heartVbWidth, heartVbHeight);
 
         var scaleX = heartVbWidth / rect.width;
         var scaleY = heartVbHeight / rect.height;
@@ -122,8 +116,7 @@ export function initHearts() {
 
         function onMove(dx, dy, x, y, ev) {
             const scale = Math.min(scaleX, scaleY);
-            console.log(dx);
-            this.transform(`t${dx * scaleX},${dy * scaleY}${this.data('ot')}`);
+                    this.transform(`t${dx * scaleX},${dy * scaleY}${this.data('ot')}`);
         }
 
         function onStart(x, y, ev) {
@@ -131,8 +124,7 @@ export function initHearts() {
         }
 
         function onEnd() {
-            // console.log("endedDrag");
-            // this.remove();
+            //         // this.remove();
             // delete this;
             // document.body.style.cursor = "url('https://cdn.custom-cursor.com/db/5358/32/legend-of-zelda-link-master-sword-cursor-b.png'), auto";
             this.removeData('start');

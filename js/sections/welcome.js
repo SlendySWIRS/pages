@@ -11,8 +11,6 @@ export function initWelcome() {
     root = document.createElement('section');
     root.id = 'root';
 
-    /* ---------- First block ---------- */
-
     const introDiv = document.createElement('div');
     introDiv.classList.add('center');
 
@@ -43,8 +41,6 @@ export function initWelcome() {
     p5.textContent = 'When you are ready to make a choice, click one of the buttons below. And don\'t forget to have fun, Hanabun!';
 
     introDiv.append(title, p1, p2, p3, p4, p5);
-
-    /* ---------- Second block ---------- */
 
     const mainDiv = document.createElement('div');
     mainDiv.classList.add('center');
@@ -122,17 +118,12 @@ export function initWelcome() {
 
     mainDiv.append(colsDiv);
 
-    /* ---------- Assemble section ---------- */
-
     root.append(introDiv, mainDiv);
-    const welcomeHanaImg = document.createElement('img');
-    welcomeHanaImg.setAttribute('src', './assets/images/frame_Hana.png')
-    welcomeHanaImg.classList.add("welcomeHanaLeft");
-    root.append(welcomeHanaImg);
     app.appendChild(root);
     if (hearts > 0) {
         menu();
     }
+    showHana('sword');
 }
 
 export function destroyWelcome() {

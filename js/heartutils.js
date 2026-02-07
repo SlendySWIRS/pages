@@ -51,8 +51,6 @@ export function showHeartBox(name) {
     heartBox.classList.add('heartBox');
 
     const local = heartSections[name].getHearts();
-    console.log(local);
-    console.log(hearts);
     let i = 0;
     while (i < local) {
         var heart = document.createElement('div');
@@ -103,11 +101,6 @@ export function saveHearts() {
     let memoryHearts = getHeartsMemory();
     let loadingHearts = getHeartsLoading();
     hearts = Math.min(12, Number(questionsHearts) + Number(slidingHearts) + Number(memoryHearts) + Number(loadingHearts));
-    console.log("questionsHearts: " + questionsHearts);
-    console.log("slidingHearts: " + slidingHearts);
-    console.log("memoryHearts: " + memoryHearts);
-    console.log("loadingHearts: " + loadingHearts);
-    console.log("totalHearts: " + hearts);
     localStorage.setItem('questionsHearts', Number(questionsHearts));
     localStorage.setItem('slidingHearts', Number(slidingHearts));
     localStorage.setItem('memoryHearts', Number(memoryHearts));
