@@ -45,5 +45,5 @@ window.addEventListener("load", () => {
     }
 });
 
-loadSection('hearts');
+loadSection('welcome');
 // resetAll();  // temporary
