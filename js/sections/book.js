@@ -6,7 +6,7 @@ import { clickable, menu, showHana } from '../utils.js'
 let root;
 
 export function initBook() {
-    // root = document.createElement('section');
+    root = document.createElement('section');
     root.id = 'root';
     root.classList.add('center');
     document.querySelector('#app').appendChild(root);
