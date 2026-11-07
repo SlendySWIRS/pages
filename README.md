@@ -1,2 +1,2 @@
-# Hana's Birthday surprise page
-Surprise for Hana's birthday
+# Testpages
+For testing related to GitHub pages

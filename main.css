@@ -1,0 +1,176 @@
+@font-face {
+    font-family: customFont; /* set name */
+    src: url("assets/fonts/Simply Playful Script.ttf"); /* url of the font */
+}
+
+@font-face {
+    font-family: customFont1; /* set name */
+    src: url("assets/fonts/Beyond Wonderland.ttf"); /* url of the font */
+}
+
+@font-face {
+    font-family: customFont2; /* set name */
+    src: url("assets/fonts/Desert Secrets.otf"); /* url of the font */
+}
+
+@font-face {
+    font-family: customFont3; /* set name */
+    src: url("assets/fonts/MoonveilStellarion.ttf"); /* url of the font */
+}
+
+@font-face {
+    font-family: customFont4; /* set name */
+    src: url("assets/fonts/Simply Playful.otf"); /* url of the font */
+}
+
+@font-face {
+    font-family: customFont5; /* set name */
+    src: url("assets/fonts/StarlightRune.ttf"); /* url of the font */
+}
+
+body {
+    font-family: customFont;
+    overflow: hidden;
+}
+
+.font-1 {
+    font-family: customFont1;
+}
+
+.font-2 {
+    font-family: customFont2;
+}
+
+.font-3 {
+    font-family: customFont3;
+}
+
+.font-4 {
+    font-family: customFont4;
+}
+
+.font-5 {
+    font-family: customFont5;
+}
+
+.site {
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flip-book {
+    /*box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);*/
+    display: none;
+    background-size: cover;
+}
+
+.page {
+    background-color: hsl(35, 55%, 98%);
+    color: hsl(35, 35%, 35%);
+    border: solid 1px hsl(35, 20%, 70%);
+
+    overflow: hidden;
+
+    .page-content {
+        padding: 25px;
+        width: 90%;
+        height: 90%;
+        display: flex;
+        flex-direction: column;
+        /*justify-content: space-between;*/
+        /*align-items: stretch;*/
+
+        .page-header {
+            height: 30px;
+            font-size: 150%;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 10px;
+            border-bottom: solid 1px hsl(35, 55%, 90%);
+        }
+
+        .page-image {
+            height: 90%;
+            background-size: contain;
+            background-position: block-start;
+            background-repeat: no-repeat;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .page-text {
+            height: 100%;
+            flex-grow: 1;
+            font-size: 120%;
+            letter-spacing: 2px;
+            text-align: justify;
+            box-sizing: border-box;
+            margin: 10px;
+            /*border-top: solid 1px hsl(35, 55%, 90%);*/
+        }
+
+        .page-line {
+            height: 0%;
+            flex-grow: 1;
+            font-size: 0;
+            text-align: justify;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            box-sizing: border-box;
+            border-top: solid 1px hsl(35, 55%, 90%);
+        }
+
+        .page-footer {
+            height: 30px;
+            border-top: solid 1px hsl(35, 55%, 90%);
+            font-size: 100%;
+            margin-top: 10px;
+            color: hsl(35, 20%, 50%);
+        }
+    }
+
+    &.--left { // for left page (property will be added automatically)
+    border-right: 0;
+        box-shadow: inset -7px 0 30px -7px rgba(0, 0, 0, 0.4);
+    }
+
+    &.--right { // for right page (property will be added automatically)
+    border-left: 0;
+        box-shadow: inset 7px 0 30px -7px rgba(0, 0, 0, 0.4);
+
+        .page-footer {
+            text-align: right;
+        }
+    }
+
+    &.hard { // for hard page
+    background-color: hsl(35, 50, 90);
+        border: solid 1px hsl(35, 20%, 50%);
+    }
+
+    &.page-cover {
+        background-color: hsl(35, 45%, 80%);
+        color:  hsl(35, 35%, 35%);
+        border: solid 1px hsl(35, 20%, 50%);
+
+        h2 {
+            text-align: center;
+            padding-top: 50%;
+            font-size: 300%;
+        }
+
+        &.page-cover-top {
+            box-shadow: inset 0px 0 30px 0px rgba(36, 10, 3, 0.5), -2px 0 5px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        &.page-cover-bottom {
+            box-shadow: inset 0px 0 30px 0px rgba(36, 10, 3, 0.5), 10px 0 8px 0px rgba(0, 0, 0, 0.4);
+        }
+    }
+}

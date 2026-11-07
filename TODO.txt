@@ -1,10 +1,2 @@
 TODO:
-- add explanation tooltip to every game
-
-Questions: Answer simple questions about yourself and earn a heartfly per 2 correct answers! Don't worry about clicking the wrong answer, no points are subtracted! (In fact, try it out!)
-
-Sliding puzzles: 3 sliding puzzles for a heartfly each! Too tedious? If the puzzle really messes with your brain, you can go back to the main menu and enter again for a different setup!
-
-Memory puzzle: Classic memory, and every 4 revealed pairs will award you a heartfly. If you exit, you have to start over. Go flip those tiles and find out why 12 emotes are enough ;)
-
-Loading bar: This one's like "progress bar 95", but it's better: every full bar gives you one "free" heartfly! So now you just have to find a way to get that progress all the way up to 100%
+- everything

@@ -1,2 +1,121 @@
-<!--meta http-equiv="refresh" content="0; url=https://slendyswirs.github.io/hana-birthday/home.html" /-->
-<meta http-equiv="refresh" content="0; url=./home.html" />
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.5">
+
+        <title>Bella's Book</title>
+        <script type="module" src="./main.js"></script>
+        <link href="./main.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="site">
+            <div class="container">
+                <div class="flip-book" id="bellaBook">
+                    <div class="page page-cover page-cover-top">
+                        <div class="page-content">
+                            <h2>BOOK TITLE</h2>
+                        </div>
+                    </div>
+                    <div class="page" data-density="hard">
+                        <div class="page-content">
+                            <h2 class="page-header">Example page</h2>
+                            <div class="page-text">Different fonts available: please let me know if you want to use a custom font,
+                                or choose one from the list below:
+                            </div>
+                            <div class="page-text font-1">
+                                1) Beyond wonderland: The quick brown fox jumps over the lazy dog
+                            </div>
+                            <div class="page-text font-2">
+                                2) Desert Secrets: The quick brown fox jumps over the lazy dog
+                            </div>
+                            <div class="page-text font-3">
+                                3) Moonveil Stellarion: The quick brown fox jumps over the lazy dog
+                            </div>
+                            <div class="page-text font-4">
+                                4) Simply Playful: The quick brown fox jumps over the lazy dog
+                            </div>
+                            <div class="page-text font-5">
+                                5) Starlight Rune: The quick brown fox jumps over the lazy dog
+                            </div>
+                            <div class="page-text">
+                                6) Simply Playful Script (the default): The quick brown fox jumps over the lazy dog
+                            </div>
+                            <div class="page-footer">Footers are also available</div>
+                        </div>
+                    </div>
+                    <!-- PAGES .... -->
+                    <div class="page" data-density="hard">
+                        <div class="page-content">
+<!--                            <h2 class="page-header"></h2>-->
+                            <div class="page-text">
+                                <div>
+                                    This page contains text and images
+                                </div>
+                                <div class="page-image" style="background-image: url(assets/images/random.jpg)"></div>
+
+                            </div>
+                            <div class="page-text">
+                                <div>
+                                    They can both occur multiple times
+                                </div>
+                                <div class="page-image" style="background-image: url(assets/images/random.jpg)">
+                                    And even on top of eachother!
+                                </div>
+                            </div>
+<!--                            <div class="page-footer">Testje</div>-->
+                        </div>
+                    </div>
+                    <div class="page" data-density="hard">
+                        <div class="page-content">
+                            <h2 class="page-header"></h2>
+                            <div class="page-text">
+                                <div>
+                                    <div>This one has some lines</div>
+                                    <div class="page-line"></div>
+                                    <div>Because why not</div>
+                                    <div class="page-line"></div>
+                                </div>
+                            </div>
+                            <div class="page-text">
+                                <div class="page-line"></div>
+                                Also: have an extra elephant!
+                                <div class="page-image" style="background-image: url(assets/images/random.jpg)"></div>
+                            </div>
+
+                            <div class="page-footer"></div>
+                        </div>
+                    </div>
+                    <div class="page" data-density="soft">
+                        <div class="page-content">
+                            <h2 class="page-header"></h2>
+                            <div class="page-text">Hey look! This page flips differently!
+                            </div>
+                            <div class="page-footer"></div>
+                        </div>
+                    </div>
+                    <div class="page" data-density="soft">
+                        <div class="page-content">
+                            <h2 class="page-header"></h2>
+                            <div class="page-text">For the fancy flipping, we'd best decide globally though! (Do we use it or not)
+                            </div>
+                            <div class="page-footer"></div>
+                        </div>
+                    </div>
+                    <div class="page">
+                        <div class="page-content">
+                            <h2 class="page-header">THE END</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p></p>
+            <div class="container">
+                <div>
+                    <button type="button" class="btn-prev">Back</button>
+                    <button type="button" class="btn-next">Next</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
