@@ -2,24 +2,23 @@ import {PageFlip} from './lib/page-flip.module.js';
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    console.log('loaded');
-
     const pageFlip = new PageFlip(
         document.getElementById("bellaBook"),
         {
             width: 550, // base page width
             height: 733, // base page height
 
-            // size: "stretch",
+            size: "stretch",
             // set threshold values:
-            minWidth: 315,
+            minWidth: 350,
             maxWidth: 1000,
             minHeight: 420,
-            maxHeight: 1350,
+            maxHeight: 733,
 
             maxShadowOpacity: 0.5, // Half shadow intensity
             showCover: true,
-            mobileScrollSupport: false // disable content scrolling on mobile devices
+            mobileScrollSupport: false, // disable content scrolling on mobile devices
+            usePortrait: false
         }
     );
 
